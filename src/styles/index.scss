@@ -1,0 +1,28 @@
+@import "variables";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  //font-size: var(--body);
+  font-family: $font-main;
+  //font-weight: 400;
+  color: $white;
+  background: $main-bgr;
+}
+
+img {
+  max-width: 100%;
+}
+
+@import "ui";
+
+.section {
+  min-height: 100vh;
+}
+
+.section__container {
+}
