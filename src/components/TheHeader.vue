@@ -1,12 +1,15 @@
 <template>
   <header class="header">
     <div class="header__container">
-      <a href="#" class="header__logo">
-        <img src="@/assets/logo.png" alt="logo">
-      </a>
-      <nav class="header__nav">
-        <router-link :to="{name: 'contacts'}" href="" class="header__nav-link">contactos</router-link>
-      </nav>
+      <div class="header__col header__col_left">
+        <slot name="left"></slot>
+      </div>
+      <div class="header__col header__col_middle">
+        <slot name="middle"></slot>
+      </div>
+      <div class="header__col header__col_right">
+        <slot name="right"></slot>
+      </div>
     </div>
   </header>
 </template>
@@ -46,19 +49,18 @@ export default {
     flex-wrap: wrap;
   }
 }
+.header__col {
+  flex-basis: calc(100% / 3);
+  &_left {
+    text-align: left;
+  }
 
-.header__logo {
-}
+  &_middle {
+    text-align: center;
+  }
 
-.header__nav {
-}
-
-.header__nav-link {
-  font-weight: 500;
-  font-size: 18px;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #FFFFFF;
+  &_right {
+    text-align: right;
+  }
 }
 </style>
