@@ -21,6 +21,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "src/styles/variables";
+@import "src/styles/mixins/convert";
+
 .header {
   z-index: 99;
   position: absolute;
@@ -28,8 +31,11 @@ export default {
   left: 0;
 
   width: 100%;
-  @media (min-width: 768px) {
-    padding-top: 85px;
+  @media (min-width: add-unit($base-content-width, px)) {
+    padding-top: add-unit($base-header-padding-top, px);
+  }
+  @media (max-width: add-unit($base-content-width - .2, px)) {
+    padding-top: add-unit($relative-header-padding-top, vh);
   }
   @media (max-width: 767.98px) {
     padding-top: 62px;
@@ -49,8 +55,10 @@ export default {
     flex-wrap: wrap;
   }
 }
+
 .header__col {
   flex-basis: calc(100% / 3);
+
   &_left {
     text-align: left;
   }

@@ -1,16 +1,9 @@
 <template>
   <router-view/>
-  <TheFooter/>
 </template>
 
 <script>
-import TheFooter from '@/components/TheFooter';
-
-export default {
-  components: {
-    TheFooter,
-  }
-}
+export default {}
 </script>
 
 <style lang="scss">

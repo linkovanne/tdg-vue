@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="footer__container">
-      <p class="footer__copyright">©TDG. 2022</p>
+      <p class="footer__copyright">&copy;TDG. {{ year }}</p>
       <div class="footer__socials">
         <a href="#" class="footer__socials-link">
           <img src="@/assets/fb.svg" alt="facebook">
@@ -16,11 +16,19 @@
 
 <script>
 export default {
-  name: 'TheFooter'
+  name: 'TheFooter',
+  data() {
+    return {
+      year: new Date().getFullYear(),
+    }
+  },
 }
 </script>
 
 <style scoped lang="scss">
+@import "src/styles/variables";
+@import "src/styles/mixins/convert";
+
 .footer {
   z-index: 99;
   position: absolute;
@@ -28,8 +36,14 @@ export default {
   left: 0;
   width: 100%;
   @media (min-width: 768px) {
-    padding-top: 67px;
-    padding-bottom: 74px;
+    padding-top: 12px;
+    //padding-bottom: 74px;
+  }
+  @media (min-width: add-unit($base-content-width, px)) {
+    padding-bottom: add-unit($base-footer-padding-bottom, px);
+  }
+  @media (max-width: add-unit($base-content-width - .2, px)) {
+    padding-bottom: add-unit($relative-footer-padding-bottom, vh);
   }
   @media (max-width: 767.98px) {
     padding-bottom: 38px;

@@ -1,0 +1,32 @@
+@import "src/styles/variables";
+@import "src/styles/mixins/convert";
+
+.header__link {
+  font-weight: 500;
+  font-size: px2rem(18px);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $white;
+}
+
+.header__logo {
+  @media (max-width: 767.98px) {
+    max-width: 162px;
+  }
+
+  img {
+    @media (max-width: $base-content-width - .2px) {
+      max-height: $relative-header-content-height + vh;
+    }
+  }
+}
+
+.header__go-back {
+  font-weight: 500;
+  font-size: px2rem(18px);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(255, 255, 255, .5);
+}

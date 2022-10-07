@@ -1,0 +1,23 @@
+@use "sass:math";
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    //@return $number / ($number * 0 + 1);
+    @return math.div($number, $number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@function add-unit($number, $unit) {
+  @return $number + $unit;
+}
+
+@function px2rem( $px ) {
+  //@return strip-unit($px) / 16 + rem;
+  @return math.div(strip-unit($px), 16) + rem;
+}
+
+@function rem2px( $rem ) {
+  @return strip-unit($rem) * 16 + px;
+}

@@ -1,4 +1,32 @@
+@import "mixins/convert";
+
+$base-width: 1920;
+$base-height: 1080;
+
+$base-header-padding-top: 50;
+$base-header-content-height: 110;
+
+$relative-header-padding-top: ($base-header-padding-top / $base-height) * 100;
+$relative-header-content-height: ($base-header-content-height / $base-height) * 100;
+
+
+$base-content-width: 1780;
+$base-content-padding-top: 43;
+$base-content-padding-bottom: 21;
+
+$base-footer-padding-top: 12;
+$base-footer-padding-bottom: 75;
+$base-footer-content-height: 18;
+
+$relative-footer-padding-bottom: ($base-footer-padding-bottom / $base-height) * 100;
+$relative-footer-content-height: ($base-footer-content-height / $base-height) * 100;
+
+$section-padding-top: calc(add-unit($relative-header-padding-top, vh) + add-unit($relative-header-content-height, vh));
+$section-padding-bottom: calc(add-unit($base-footer-padding-top, px) + add-unit($base-footer-content-height, px) + add-unit($relative-footer-padding-bottom, vh));
+
 $white: #FFFFFF;
+$orange: #FF0000;
+$light-text: #F2F2F2;
 
 $main-bgr: linear-gradient(261.97deg, rgba(32, 33, 33, 0.49) 29.83%, rgba(32, 33, 33, 0.7) 59.68%);
 

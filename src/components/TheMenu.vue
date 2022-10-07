@@ -15,11 +15,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "src/styles/variables";
+
 .the-menu {
+  cursor: pointer;
+  z-index: 1000;
   position: absolute;
   top: 50%;
-  right: 6px;
+  right: 20px;
   transform: translateY(-50%);
+  color: $orange;
 }
 </style>
