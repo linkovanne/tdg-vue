@@ -1,5 +1,5 @@
 <template>
-  <div class="the-project">
+  <router-link :to="{name: 'project', params: { id: '1' },}" class="the-project">
     <div class="the-project__img">
       <img src="@/assets/service/1.png" alt="img">
     </div>
@@ -10,13 +10,13 @@
         <strong>Nuevo trabajo</strong>
       </div>
     </div>
-    <router-link :to="{name: 'project', params: { id: '1' },}" class="the-project__action">
+    <div class="the-project__action">
       <svg width="16" height="29" viewBox="0 0 16 29" xmlns="http://www.w3.org/2000/svg">
         <path
             d="M15.7532 15.0781L1.46462 28.7583C1.12801 29.0806 0.588481 29.0806 0.25246 28.7583C-0.0835617 28.436 -0.0841533 27.9194 0.25246 27.5977L13.9317 14.5004L0.25246 1.40359C-0.0841533 1.0813 -0.0841533 0.564718 0.25246 0.242992C0.417513 0.0849609 0.63995 0 0.855287 0C1.07122 0 1.29306 0.0787296 1.45811 0.242992L15.7467 13.9237C16.0833 14.2392 16.0833 14.762 15.7532 15.0781Z"/>
       </svg>
-    </router-link>
-  </div>
+    </div>
+  </router-link>
 </template>
 
 <script>

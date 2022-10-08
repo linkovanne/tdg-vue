@@ -43,10 +43,10 @@ export default {
 }
 
 .header__container {
-  width: 100%;
-  max-width: calc(1770px + 40px);
+  //width: 100%;
+  //max-width: calc(1770px + 40px);
   padding: 0 20px;
-  margin: 0 auto;
+  //margin: 0 auto;
 
   display: flex;
   align-items: flex-start;

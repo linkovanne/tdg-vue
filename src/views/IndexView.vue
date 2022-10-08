@@ -1,17 +1,17 @@
 <template>
   <section class="section index">
-    <TheHeader>
-      <template v-slot:left>
-        <router-link :to="{name: 'index'}" class="header__logo">
-          <img src="@/assets/logo.png" alt="logo">
-        </router-link>
-      </template>
-      <template v-slot:right>
-        <router-link :to="{name: 'contacts'}" href="" class="header__link">contactos</router-link>
-      </template>
-    </TheHeader>
-
     <div class="section__container index__container">
+      <TheHeader>
+        <template v-slot:left>
+          <router-link :to="{name: 'index'}" class="header__logo">
+            <img src="@/assets/logo.png" alt="logo">
+          </router-link>
+        </template>
+        <template v-slot:right>
+          <router-link :to="{name: 'contacts'}" href="" class="header__link">contactos</router-link>
+        </template>
+      </TheHeader>
+
       <TheMenu/>
 
       <div class="section__content index__content">
@@ -20,9 +20,9 @@
         </div>
         <h2 class="index__title">Cada coche tiene más de&nbsp;una vida</h2>
       </div>
-    </div>
 
-    <TheFooter/>
+      <TheFooter/>
+    </div>
   </section>
 </template>
 

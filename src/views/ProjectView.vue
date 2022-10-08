@@ -1,21 +1,21 @@
 <template>
   <section class="section project" :style="{backgroundImage: item.images[slideIndex]}">
-    <TheHeader>
-      <template v-slot:left>
-        <router-link :to="{name: 'serviceGallery', id: 1}" class="header__go-back">back</router-link>
-      </template>
-    </TheHeader>
-
     <div class="section__container project__container">
+      <TheHeader>
+        <template v-slot:left>
+          <router-link :to="{name: 'serviceGallery', id: 1}" class="header__go-back">back</router-link>
+        </template>
+      </TheHeader>
+
       <TheMenu/>
 
       <div class="section__content project__content">
         <h2 class="project__title">{{ item.title }}</h2>
         <p class="project__subtitle">{{ item.description }}</p>
       </div>
-    </div>
 
-    <TheFooter/>
+      <TheFooter/>
+    </div>
   </section>
 </template>
 

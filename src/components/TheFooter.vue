@@ -52,9 +52,9 @@ export default {
 
 .footer__container {
   width: 100%;
-  max-width: calc(1770px + 40px);
+  //max-width: calc(1770px + 40px);
   padding: 0 20px;
-  margin: 0 auto;
+  //margin: 0 auto;
 
   @media (min-width: 768px) {
     display: flex;

@@ -1,20 +1,20 @@
 <template>
   <section class="section service-gallery">
-    <TheHeader>
-      <template v-slot:left>
-        <router-link :to="{name: 'service'}" class="header__go-back">back</router-link>
-      </template>
-      <template v-slot:middle>
-        <router-link :to="{name: 'index'}" class="header__logo">
-          <img src="@/assets/logo.png" alt="logo">
-        </router-link>
-      </template>
-      <template v-slot:right>
-        <a href="#" class="ui-button" style="transform: translateX(20px);">Contáctate con nosotros</a>
-      </template>
-    </TheHeader>
-
     <div class="section__container service-gallery__container">
+      <TheHeader>
+        <template v-slot:left>
+          <router-link :to="{name: 'service'}" class="header__go-back">back</router-link>
+        </template>
+        <template v-slot:middle>
+          <router-link :to="{name: 'index'}" class="header__logo">
+            <img src="@/assets/logo.png" alt="logo">
+          </router-link>
+        </template>
+        <template v-slot:right>
+          <a href="#" class="ui-button" style="transform: translateX(20px);">Contáctate con nosotros</a>
+        </template>
+      </TheHeader>
+
       <TheMenu/>
 
       <ol class="section__content service-gallery__content service-gallery__slider">
@@ -30,9 +30,9 @@
           </router-link>
         </li>
       </ol>
-    </div>
 
-    <TheFooter/>
+      <TheFooter/>
+    </div>
   </section>
 </template>
 

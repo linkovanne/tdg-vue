@@ -5,17 +5,8 @@
   position: relative;
   min-height: 100vh;
   @media (min-width: 768px) {
-    padding-top: 210px;
-    padding-bottom: 160px;
     display: flex;
     align-items: stretch;
-  }
-  @media (max-width: $base-content-width - .2px) {
-    padding-top: $section-padding-top;
-    padding-bottom: $section-padding-bottom;
-  }
-  @media (max-width: 767.98px) {
-    padding-bottom: 123px;
   }
 
   &:before {
@@ -39,8 +30,17 @@
   padding-right: calc(20px + 41px);
   margin: 0 auto;
   @media (min-width: 768px) {
+    padding-top: 210px;
+    padding-bottom: 160px;
     display: flex;
     align-items: flex-end;
+  }
+  @media (max-width: $base-content-width - .2px) {
+    padding-top: $section-padding-top;
+    padding-bottom: $section-padding-bottom;
+  }
+  @media (max-width: 767.98px) {
+    padding-bottom: 123px;
   }
 }
 

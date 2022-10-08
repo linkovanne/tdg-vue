@@ -1,17 +1,17 @@
 <template>
   <section class="section service">
-    <TheHeader class="service-header">
-      <template v-slot:left>
-        <router-link :to="{name: 'index'}" class="header__logo">
-          <img src="@/assets/logo.png" alt="logo">
-        </router-link>
-      </template>
-      <template v-slot:right>
-        <router-link :to="{name: 'contacts'}" href="" class="header__link">contactos</router-link>
-      </template>
-    </TheHeader>
-
     <div class="section__container service__container">
+      <TheHeader class="service-header">
+        <template v-slot:left>
+          <router-link :to="{name: 'index'}" class="header__logo">
+            <img src="@/assets/logo.png" alt="logo">
+          </router-link>
+        </template>
+        <template v-slot:right>
+          <router-link :to="{name: 'contacts'}" href="" class="header__link">contactos</router-link>
+        </template>
+      </TheHeader>
+
       <TheMenu/>
 
       <div class="section__content service__content">
@@ -40,9 +40,9 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <TheFooter/>
+      <TheFooter/>
+    </div>
   </section>
 </template>
 
@@ -73,9 +73,9 @@ export default {
 }
 
 .service > * {
-  @media (min-width: 1380px) and (max-height: 780px) {
-    transform: scale(.8);
-  }
+  //@media (min-width: 1380px) and (max-height: 780px) {
+  //  transform: scale(.8);
+  //}
 }
 
 .service__title {
