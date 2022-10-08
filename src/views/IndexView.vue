@@ -12,13 +12,11 @@
     </TheHeader>
 
     <div class="section__container index__container">
+      <TheMenu/>
+
       <div class="section__content index__content">
         <div class="index__action">
-          <router-link :to="{
-            name: 'service',
-            params: { id: '1' },
-          }" class="ui-button spacing">Amamos lo que hacemos
-          </router-link>
+          <a href="#" class="ui-button spacing" @click.prevent>Amamos lo que hacemos</a>
         </div>
         <h2 class="index__title">Cada coche tiene más de&nbsp;una vida</h2>
       </div>
@@ -29,12 +27,13 @@
 </template>
 
 <script>
+import TheMenu from '@/components/TheMenu';
 import TheHeader from '@/components/TheHeader';
 import TheFooter from "@/components/TheFooter";
 
 export default {
   name: 'IndexView',
-  components: {TheHeader, TheFooter}
+  components: {TheMenu, TheHeader, TheFooter},
 }
 </script>
 

@@ -15,6 +15,8 @@
     </TheHeader>
 
     <div class="section__container service-gallery__container">
+      <TheMenu/>
+
       <ol class="section__content service-gallery__content service-gallery__slider">
         <li v-for="item in items" :key="item"
             class="service-gallery__slide"
@@ -37,10 +39,11 @@
 <script>
 import TheHeader from '@/components/TheHeader';
 import TheFooter from '@/components/TheFooter';
+import TheMenu from "@/components/TheMenu";
 
 export default {
   name: 'ServiceGalleryView',
-  components: {TheHeader, TheFooter},
+  components: {TheMenu, TheHeader, TheFooter},
   data() {
     return {
       items: [

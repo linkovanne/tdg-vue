@@ -7,6 +7,8 @@
     </TheHeader>
 
     <div class="section__container project__container">
+      <TheMenu/>
+
       <div class="section__content project__content">
         <h2 class="project__title">{{ item.title }}</h2>
         <p class="project__subtitle">{{ item.description }}</p>
@@ -20,10 +22,11 @@
 <script>
 import TheHeader from '@/components/TheHeader';
 import TheFooter from '@/components/TheFooter';
+import TheMenu from "@/components/TheMenu";
 
 export default {
   name: 'ProjectView',
-  components: {TheHeader, TheFooter},
+  components: {TheMenu, TheHeader, TheFooter},
   data() {
     return {
       slideIndex: 0,

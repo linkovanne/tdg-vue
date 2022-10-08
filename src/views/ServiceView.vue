@@ -113,6 +113,7 @@ export default {
 }
 
 .service__info-list {
+  margin-bottom: 1rem;
   padding-left: 22px;
   font-weight: 700;
   font-size: px2rem(22px);
