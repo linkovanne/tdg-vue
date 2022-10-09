@@ -141,11 +141,18 @@ export default {
   height: 100%;
   display: flex;
   align-items: stretch;
+  @media (min-width: 1024px) { }
+  @media (max-width: 1023.98px) {
+    flex-direction: column;
+  }
 }
 
 .the-menu-content__col {
-  flex-basis: 50%;
   display: flex;
+  @media (min-width: 1024px) {
+    flex-basis: 50%;
+  }
+  @media (max-width: 1023.98px) {}
 
   &.left {
     flex-direction: column;
@@ -174,16 +181,29 @@ export default {
   letter-spacing: 0.05em;
   color: $light-text;
   opacity: 0.5;
+  @media (min-width: 1024px) {}
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
 }
 
 .the-menu-content__slogan {
   margin-bottom: 10rem;
   font-weight: 700;
-  font-size: px2rem(64px);
   line-height: calc(78 / 64);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: $white;
+  @media (min-width: add-unit($base-container-width, px)) {
+    font-size: px2rem(64px);
+  }
+  @media (min-width: 1024px) and (max-width: add-unit($base-container-width - .2, px)) {
+    font-size: 3.3vw;
+  }
+  @media (min-width: 1024px) {}
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
 }
 
 .the-menu-content__project {
@@ -199,17 +219,28 @@ export default {
 
   li {
     & + li {
-      margin-top: px2rem(34px);
+      @media (min-width: 768px) {
+        margin-top: px2rem(34px);
+      }
+      @media (max-width: 767.98px) {
+        margin-top: px2rem(27px);
+      }
     }
   }
 
   a {
     font-weight: 700;
-    font-size: px2rem(20px);
-    line-height: calc(35 / 20);
     letter-spacing: 0.5em;
     text-transform: uppercase;
     color: $white;
+    @media (min-width: 768px) {
+      font-size: px2rem(20px);
+      line-height: calc(35 / 20);
+    }
+    @media (max-width: 767.98px) {
+      font-size: 1rem;
+      line-height: calc(27 / 16);
+    }
 
     &:hover {
       color: $orange;

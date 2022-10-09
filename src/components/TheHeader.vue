@@ -31,10 +31,10 @@ export default {
   left: 0;
 
   width: 100%;
-  @media (min-width: add-unit($base-content-width, px)) {
+  @media (min-width: add-unit($base-container-width, px)) {
     padding-top: add-unit($base-header-padding-top, px);
   }
-  @media (max-width: add-unit($base-content-width - .2, px)) {
+  @media (max-width: add-unit($base-container-width - .2, px)) {
     padding-top: add-unit($relative-header-padding-top, vh);
   }
   @media (max-width: 767.98px) {
@@ -43,11 +43,7 @@ export default {
 }
 
 .header__container {
-  //width: 100%;
-  //max-width: calc(1770px + 40px);
   padding: 0 20px;
-  //margin: 0 auto;
-
   display: flex;
   align-items: flex-start;
   justify-content: space-between;

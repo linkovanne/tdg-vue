@@ -45,22 +45,27 @@ export default {
 }
 
 .index__container {
-  position: relative;
+  //position: relative;
 }
 
 .index__action {
+  @media (max-width: 575.98px) {
+    .ui-button {
+      width: 100%;
+    }
+  }
 }
 
 .index__title {
-  margin: 14px 0 0;
+  margin: px2rem(14px) 0 px2rem(50px);
   font-weight: 700;
   line-height: 1.2;
   text-transform: uppercase;
-  @media (min-width: 1380px) {
+  @media (min-width: add-unit($base-container-width, px)) {
     font-size: px2rem(87px);
   }
-  @media (min-width: 1024px) and (max-width: 1379.98px) {
-    font-size: px2rem(64px);
+  @media (min-width: 1024px) and (max-width: add-unit($base-container-width - .2, px)) {
+    font-size: 4.5vw;
   }
   @media (min-width: 768px) and (max-width: 1023.98px) {
     font-size: px2rem(32px);

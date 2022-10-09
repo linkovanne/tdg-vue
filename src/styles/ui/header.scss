@@ -16,7 +16,7 @@
   }
 
   img {
-    @media (max-width: $base-content-width - .2px) {
+    @media (max-width: $base-container-width - .2px) {
       max-height: $relative-header-content-height + vh;
     }
   }

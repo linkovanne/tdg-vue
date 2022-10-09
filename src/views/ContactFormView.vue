@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <TheFooter/>
+    <TheFooter class="contact-form__footer"/>
   </section>
 </template>
 
@@ -57,32 +57,75 @@ export default {
 .contact-form__content {
   display: flex;
   justify-content: space-between;
+  @media (min-width: 1024px) { }
+  @media (max-width: 1023.98px) {
+    flex-direction: column;
+  }
 }
 
 .contact-form__col {
   flex-basis: 50%;
-  max-width: 689px;
+  @media (min-width: 1024px) {
+    max-width: 689px;
+  }
 
   &.form {
   }
 
   &.text {
+    position: relative;
+    @media (min-width: 1024px) {
+      padding-top: 105px;
+      padding-left: 70px;
+    }
+    @media (max-width: 1023.98px) {
+      margin-top: 7.75vh;
+      padding-top: 6.15vh;
+      padding-left: 17.67vw;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: url("@/assets/quotes.png") top center / contain no-repeat;
+      @media (min-width: 1024px) {
+        width: 234px;
+        height: 185px;
+      }
+      @media (max-width: 1023.98px) {
+        width: 29.6vw;
+        height: 10.8vh;
+      }
+    }
+
     h3 {
-      font-family: 'Georgia';
+      font-family: $font-secondary;
       font-weight: 700;
-      font-size: px2rem(64px);
       line-height: calc(73 / 64);
       letter-spacing: -0.05em;
       color: $white;
+      @media (min-width: 1024px) {
+        font-size: px2rem(64px); // 3.6vw
+      }
+      @media (max-width: 1023.98px) {
+        font-size: 3.7vh;
+      }
     }
 
     p {
       font-weight: 700;
-      font-size: 1rem;
       line-height: 1.34;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: $orange;
+      @media (min-width: 1024px) {
+        font-size: 1rem;
+      }
+      @media (max-width: 1023.98px) {
+        font-size: 2vh; // 16px
+      }
     }
   }
 }
@@ -91,12 +134,17 @@ export default {
 }
 
 .contact-form__title {
-  margin-bottom: 51px;
-
   font-weight: 900;
-  font-size: px2rem(36px);
   line-height: calc(52 / 36);
   color: $white;
+  @media (min-width: 1024px) {
+    margin-bottom: 51px;
+    font-size: px2rem(36px);
+  }
+  @media (max-width: 1023.98px) {
+    margin-bottom: 4.5vh;
+    font-size: 3.2vh;
+  }
 }
 
 .contact-form__field {
@@ -106,6 +154,12 @@ export default {
 
   &.action {
     margin-top: 48px;
+
+    @media (max-width: 1023.98px) {
+      margin-top: calc(35 * 100vh / 812);
+    }
   }
 }
+
+.contact-form__footer { }
 </style>

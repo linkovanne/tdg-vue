@@ -4,10 +4,8 @@
 .section {
   position: relative;
   min-height: 100vh;
-  @media (min-width: 768px) {
-    display: flex;
-    align-items: stretch;
-  }
+  display: flex;
+  align-items: stretch;
 
   &:before {
     content: '';
@@ -25,22 +23,23 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: calc(1784px + 20px + 20px + 41px);
-  padding-left: 20px;
-  padding-right: calc(20px + 41px);
+  max-width: add-unit($base-container-width, px);
+  padding-left: add-unit($base-content-padding-left, px);
+  padding-right: add-unit($base-content-padding-right, px);
   margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
   @media (min-width: 768px) {
     padding-top: 210px;
     padding-bottom: 160px;
-    display: flex;
-    align-items: flex-end;
   }
-  @media (max-width: $base-content-width - .2px) {
+  @media (max-width: $base-container-width - .2px) {
     padding-top: $section-padding-top;
     padding-bottom: $section-padding-bottom;
   }
   @media (max-width: 767.98px) {
     padding-bottom: 123px;
+    padding-right: add-unit($base-content-padding-right-xs, px);
   }
 }
 

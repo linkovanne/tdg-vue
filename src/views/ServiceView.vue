@@ -28,7 +28,7 @@
               <router-link :to="{name: 'serviceGallery'}" class="ui-button outline">Ver ejemplos</router-link>
             </div>
           </div>
-          <div class="service__info-col">
+          <div class="service__info-col description">
             <p class="service__info-description">
               Es un lavado a mano detallado del exterior con limpieza de llantas en dos pasos, aspiración completa del
               interior del vehículo con maletero incluido, limpieza detallada de salpicadero,
@@ -68,57 +68,78 @@ export default {
   background: url("@/assets/service/1.png") top center / cover no-repeat;
 }
 
-.service__container {
-  padding-right: 4rem;
-}
-
-.service > * {
-  //@media (min-width: 1380px) and (max-height: 780px) {
-  //  transform: scale(.8);
-  //}
-}
+.service__container { }
 
 .service__title {
-  margin-bottom: 16px;
   font-weight: 500;
-  font-size: px2rem(18px);
-  line-height: calc(24 / 18);
   letter-spacing: 0.05em;
   color: $light-text;
   opacity: 0.5;
+  @media (min-width: 1024px) {
+    margin-bottom: 1rem;
+    font-size: px2rem(18px);
+    line-height: calc(24 / 18);
+  }
+  @media (max-width: 1023.98px) {
+    margin-bottom: .5rem;
+    font-size: 2vh;
+    line-height: calc(21 / 16);
+  }
 }
 
 .service__info {
-  display: flex;
+  @media (min-width: 1024px) {
+    display: flex;
+  }
 }
 
 .service__info-col {
-  flex: 1 50%;
-  $padding: (139 / $base-width) * 100;
+  @media (min-width: 1024px) {
+    flex: 1 50%;
+    $padding: (139 / $base-width) * 100;
 
-  &:nth-of-type(even) {
-    padding-left: add-unit($padding, vw);
+    &:nth-of-type(even) {
+      padding-left: add-unit($padding, vw);
+    }
+
+    &:nth-of-type(odd) {
+      padding-right: add-unit($padding, vw);
+    }
   }
 
-  &:nth-of-type(odd) {
-    padding-right: add-unit($padding, vw);
+  &.description {
+    @media (max-width: 1023.98px) {
+      display: none;
+    }
   }
 }
 
 .service__info-title {
   font-weight: 700;
-  font-size: px2rem(64px);
-  line-height: calc(78 / 64);
   letter-spacing: 0.1em;
+  @media (min-width: 1024px) {
+    font-size: px2rem(64px);
+    line-height: calc(78 / 64);
+  }
+  @media (max-width: 1023.98px) {
+    font-size: 4vh;
+    line-height: calc(40 / 33);
+  }
 }
 
 .service__info-list {
-  margin-bottom: 1rem;
   padding-left: 22px;
   font-weight: 700;
   font-size: px2rem(22px);
   line-height: calc(39 / 22);
   letter-spacing: 0.2em;
+  @media (min-width: 1024px) {
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 1023.98px) {
+    margin-bottom: 7vh;
+    font-size: 2vh;
+  }
 }
 
 .service__info-item {

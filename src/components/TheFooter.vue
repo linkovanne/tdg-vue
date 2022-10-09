@@ -39,10 +39,10 @@ export default {
     padding-top: 12px;
     //padding-bottom: 74px;
   }
-  @media (min-width: add-unit($base-content-width, px)) {
+  @media (min-width: add-unit($base-container-width, px)) {
     padding-bottom: add-unit($base-footer-padding-bottom, px);
   }
-  @media (max-width: add-unit($base-content-width - .2, px)) {
+  @media (max-width: add-unit($base-container-width - .2, px)) {
     padding-bottom: add-unit($relative-footer-padding-bottom, vh);
   }
   @media (max-width: 767.98px) {
