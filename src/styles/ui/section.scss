@@ -38,7 +38,7 @@
     padding-bottom: $section-padding-bottom;
   }
   @media (max-width: 767.98px) {
-    padding-bottom: 123px;
+    //padding-bottom: 123px;
     padding-right: add-unit($base-content-padding-right-xs, px);
   }
 }

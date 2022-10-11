@@ -68,7 +68,9 @@ export default {
   background: url("@/assets/service/1.png") top center / cover no-repeat;
 }
 
-.service__container { }
+.service__content {
+  padding-top: 10vh;
+}
 
 .service__title {
   font-weight: 500;

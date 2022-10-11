@@ -1,5 +1,7 @@
 <template>
   <div class="section the-menu-content">
+    <TheHeader/>
+
     <div class="section__container">
       <div class="section__content the-menu-content__content">
         <div class="the-menu-content__col left">
@@ -10,14 +12,7 @@
         </div>
 
         <div class="the-menu-content__col right">
-          <a href="#" class="the-menu-content__icon" @click.prevent="$emit('close-menu')">
-            <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
-              <path
-                  d="M33.5978 33.5977C33.0614 34.1341 32.1918 34.1341 31.6555 33.5977L0.402273 2.34467C-0.134091 1.80831 -0.134091 0.938717 0.402273 0.402355C0.670421 0.134075 1.02198 6.48499e-05 1.37346 6.48499e-05C1.72495 6.48499e-05 2.07644 0.13414 2.34466 0.40242L33.5978 31.6555C34.1341 32.1918 34.1341 33.0614 33.5978 33.5977Z"/>
-              <path
-                  d="M33.5977 2.3446L2.34452 33.5977C1.80823 34.134 0.93857 34.134 0.402273 33.5977C-0.134091 33.0614 -0.134091 32.1918 0.402273 31.6554L31.6555 0.402287C31.9236 0.134075 32.2752 0 32.6267 0C32.9781 0 33.3297 0.134075 33.5978 0.402222C34.134 0.938652 34.134 1.80824 33.5977 2.3446Z"/>
-            </svg>
-          </a>
+          <TheMenuButton class="the-menu-content__icon" :is-opened="true" @click="$emit('close-menu')"/>
 
           <ul class="the-menu-content__list">
             <li>
@@ -97,20 +92,24 @@
       </div>
     </div>
 
-    <TheFooter/>
+      <TheFooter/>
   </div>
 </template>
 
 <script>
 import TheFooter from "@/components/TheFooter";
 import TheProject from "@/components/TheProject";
+import TheHeader from "@/components/TheHeader";
+import TheMenuButton from "@/components/TheMenuButton";
 
 export default {
   name: 'TheMenuContent',
   components: {
+    TheMenuButton,
+    TheHeader,
     TheProject,
     TheFooter,
-  }
+  },
 }
 </script>
 
@@ -126,14 +125,16 @@ export default {
   height: 100%;
   background: #202121 url("@/assets/menu_bgr.png") top center / cover no-repeat;
 
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    right: 0;
-    bottom: 0;
-    background: rgba(32, 33, 33, 0.8);
+  @media (min-width: 1024px) {
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      right: 0;
+      bottom: 0;
+      background: rgba(32, 33, 33, 0.8);
+    }
   }
 }
 
@@ -141,9 +142,12 @@ export default {
   height: 100%;
   display: flex;
   align-items: stretch;
-  @media (min-width: 1024px) { }
+  @media (min-width: 1024px) {
+  }
   @media (max-width: 1023.98px) {
+    padding-bottom: 6.5vw;
     flex-direction: column;
+    justify-content: flex-end;
   }
 }
 
@@ -152,11 +156,16 @@ export default {
   @media (min-width: 1024px) {
     flex-basis: 50%;
   }
-  @media (max-width: 1023.98px) {}
+  @media (max-width: 1023.98px) {
+  }
 
   &.left {
     flex-direction: column;
     justify-content: flex-end;
+    @media (max-width: 1023.98px) {
+      padding-top: 7.75vh; // 63px for $base-height-mob
+      order: 1;
+    }
   }
 
   &.right {
@@ -166,11 +175,15 @@ export default {
 }
 
 .the-menu-content__icon {
+  cursor: pointer;
   position: absolute;
   top: 50%;
   left: 10%;
   transform: translateY(-50%);
-  fill: $orange;
+  color: $orange;
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
 }
 
 .the-menu-content__title {
@@ -181,7 +194,8 @@ export default {
   letter-spacing: 0.05em;
   color: $light-text;
   opacity: 0.5;
-  @media (min-width: 1024px) {}
+  @media (min-width: 1024px) {
+  }
   @media (max-width: 1023.98px) {
     display: none;
   }
@@ -200,22 +214,33 @@ export default {
   @media (min-width: 1024px) and (max-width: add-unit($base-container-width - .2, px)) {
     font-size: 3.3vw;
   }
-  @media (min-width: 1024px) {}
+  @media (min-width: 1024px) {
+  }
   @media (max-width: 1023.98px) {
     display: none;
   }
 }
 
 .the-menu-content__project {
-  max-width: 680px;
+  @media (min-width: 576px) {
+    max-width: 680px;
+  }
+  @media (max-width: 575.98px) {
+    max-width: 375px;
+  }
 }
 
 .the-menu-content__list {
-  max-height: add-unit(814 * 100 / $base-height, vh);
   overflow-y: auto;
-  padding-left: 30%;
-  padding-right: 60px;
   list-style: none;
+  @media (min-width: 1024px) {
+    max-height: add-unit(814 * 100 / $base-height, vh);
+    padding-left: 30%;
+    padding-right: 60px;
+  }
+  @media (max-width: 1023.98px) {
+    max-height: add-unit(234 * 100 / $base-height, vh);
+  }
 
   li {
     & + li {

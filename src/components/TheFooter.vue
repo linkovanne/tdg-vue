@@ -4,10 +4,10 @@
       <p class="footer__copyright">&copy;TDG. {{ year }}</p>
       <div class="footer__socials">
         <a href="#" class="footer__socials-link">
-          <img src="@/assets/fb.svg" alt="facebook">
+          <facebook/>
         </a>
         <a href="#" class="footer__socials-link">
-          <img src="@/assets/inst.svg" alt="instagram">
+          <instagram/>
         </a>
       </div>
     </div>
@@ -15,8 +15,12 @@
 </template>
 
 <script>
+import facebook from "@/assets/icons/facebook";
+import instagram from "@/assets/icons/instagram";
+
 export default {
   name: 'TheFooter',
+  components: {facebook, instagram},
   data() {
     return {
       year: new Date().getFullYear(),
@@ -35,10 +39,7 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  @media (min-width: 768px) {
-    padding-top: 12px;
-    //padding-bottom: 74px;
-  }
+  padding-top: 12px;
   @media (min-width: add-unit($base-container-width, px)) {
     padding-bottom: add-unit($base-footer-padding-bottom, px);
   }
@@ -52,14 +53,15 @@ export default {
 
 .footer__container {
   width: 100%;
-  //max-width: calc(1770px + 40px);
   padding: 0 20px;
-  //margin: 0 auto;
 
   @media (min-width: 768px) {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  @media (max-width: 767.98px) {
+    opacity: .5;
   }
 }
 
@@ -79,6 +81,8 @@ export default {
 }
 
 .footer__socials-link {
+  color: $white;
+
   & + .footer__socials-link {
     @media (min-width: 768px) {
       padding-left: 78px;

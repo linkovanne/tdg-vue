@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <div class="header__container">
+    <div class="header__container pc">
       <div class="header__col header__col_left">
         <slot name="left"></slot>
       </div>
@@ -9,6 +9,14 @@
       </div>
       <div class="header__col header__col_right">
         <slot name="right"></slot>
+      </div>
+    </div>
+
+    <div class="header__container mob">
+      <div class="header__col header__col_left">
+        <router-link :to="{name: 'index'}" class="header__logo">
+          <img src="@/assets/logo.png" alt="logo">
+        </router-link>
       </div>
     </div>
   </header>
@@ -37,23 +45,39 @@ export default {
   @media (max-width: add-unit($base-container-width - .2, px)) {
     padding-top: add-unit($relative-header-padding-top, vh);
   }
-  @media (max-width: 767.98px) {
-    padding-top: 62px;
-  }
 }
 
 .header__container {
   padding: 0 20px;
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  @media (max-width: 767.98px) {
-    flex-wrap: wrap;
+  @media (min-width: 1024px) {
+    align-items: flex-start;
+  }
+  @media (max-width: 1023.98px) {
+    align-items: center;
+  }
+
+  &.pc {
+    @media (max-width: 1023.98px) {
+      display: none;
+    }
+  }
+
+  &.mob {
+    @media (min-width: 1024px) {
+      display: none;
+    }
   }
 }
 
 .header__col {
-  flex-basis: calc(100% / 3);
+  @media (min-width: 1024px) {
+    flex-basis: calc(100% / 3);
+  }
+  @media (max-width: 1023.98px) {
+    flex-basis: 50%;
+  }
 
   &_left {
     text-align: left;

@@ -12,7 +12,7 @@
         </template>
       </TheHeader>
 
-      <TheMenu/>
+      <TheMenu class="index__aside-menu"/>
 
       <div class="section__content index__content">
         <div class="index__action">
@@ -45,7 +45,6 @@ export default {
 }
 
 .index__container {
-  //position: relative;
 }
 
 .index__action {

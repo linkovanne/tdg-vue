@@ -57,16 +57,18 @@ export default {
 .contact-form__content {
   display: flex;
   justify-content: space-between;
-  @media (min-width: 1024px) { }
+  @media (min-width: 1024px) {
+    padding-bottom: calc(100vh * 160 / $base-height);
+  }
   @media (max-width: 1023.98px) {
     flex-direction: column;
   }
 }
 
 .contact-form__col {
-  flex-basis: 50%;
   @media (min-width: 1024px) {
     max-width: 689px;
+    flex-basis: 48%;
   }
 
   &.form {
@@ -75,8 +77,8 @@ export default {
   &.text {
     position: relative;
     @media (min-width: 1024px) {
-      padding-top: 105px;
-      padding-left: 70px;
+      padding-top: calc(100vh * 105 / $base-height);
+      padding-left: calc(100vw * 70 / $base-content-width);
     }
     @media (max-width: 1023.98px) {
       margin-top: 7.75vh;
@@ -91,8 +93,8 @@ export default {
       left: 0;
       background: url("@/assets/quotes.png") top center / contain no-repeat;
       @media (min-width: 1024px) {
-        width: 234px;
-        height: 185px;
+        width: calc(100vw * 234 / $base-content-width);
+        height: calc(100vh * 185 / $base-height);
       }
       @media (max-width: 1023.98px) {
         width: 29.6vw;
