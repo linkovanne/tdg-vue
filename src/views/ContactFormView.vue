@@ -17,16 +17,16 @@
           <div class="contact-form__form-inner">
             <h2 class="contact-form__title">Escríbenos</h2>
             <div class="contact-form__field">
-              <input class="ui-input" type="text" placeholder="Your name">
+              <input v-model="form.name" class="ui-input" type="text" placeholder="Your name">
             </div>
             <div class="contact-form__field">
-              <input class="ui-input" type="text" placeholder="Email">
+              <input v-model="form.email" class="ui-input" type="text" placeholder="Email">
             </div>
             <div class="contact-form__field">
-              <textarea class="ui-input" type="text" placeholder="Your message"></textarea>
+              <textarea v-model="form.message" class="ui-input" type="text" placeholder="Your message"></textarea>
             </div>
             <div class="contact-form__field action">
-              <button class="ui-button wide">enviar</button>
+              <button class="ui-button wide" @click.prevent="submitForm()">enviar</button>
             </div>
           </div>
         </div>
@@ -47,7 +47,21 @@ import TheFooter from '@/components/TheFooter';
 
 export default {
   name: 'ContactFormView',
-  components: {TheHeader, TheFooter}
+  components: {TheHeader, TheFooter},
+  data() {
+    return {
+      form: {
+        name: '',
+        email: '',
+        message: '',
+      }
+    }
+  },
+  methods: {
+    submitForm() {
+      console.log('contacts', this.form);
+    }
+  }
 }
 </script>
 
@@ -58,11 +72,15 @@ export default {
   display: flex;
   justify-content: space-between;
   @media (min-width: 1024px) {
-    padding-bottom: calc(100vh * 160 / $base-height);
+    align-items: center;
   }
   @media (max-width: 1023.98px) {
     flex-direction: column;
   }
+}
+
+.contact-form__container {
+  align-items: center;
 }
 
 .contact-form__col {
@@ -151,11 +169,11 @@ export default {
 
 .contact-form__field {
   & + .contact-form__field {
-    margin-top: 24px;
+    margin-top: 2vh;
   }
 
   &.action {
-    margin-top: 48px;
+    margin-top: 4vh;
 
     @media (max-width: 1023.98px) {
       margin-top: calc(35 * 100vh / 812);
@@ -163,5 +181,6 @@ export default {
   }
 }
 
-.contact-form__footer { }
+.contact-form__footer {
+}
 </style>

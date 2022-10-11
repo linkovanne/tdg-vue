@@ -69,7 +69,7 @@ export default {
 }
 
 .service__content {
-  padding-top: 10vh;
+  padding-bottom: 10vh;
 }
 
 .service__title {
