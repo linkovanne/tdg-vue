@@ -1,5 +1,10 @@
 <template>
   <section class="section project" :style="{backgroundImage: item.images[slideIndex]}">
+    <VueAgile ref="carousel" :options="options" class="project__slider">
+      <div v-for="img in item.images" class="project__slider-item">
+        <img :src="img" alt="">
+      </div>
+    </VueAgile>
     <div class="section__container project__container">
       <TheHeader>
         <template v-slot:left>
@@ -14,7 +19,20 @@
         <p class="project__subtitle">{{ item.description }}</p>
       </div>
 
-      <TheFooter/>
+      <TheFooter>
+        <template v-slot:middle>
+          <div class="project__slider-nav">
+            <a class="project__slider-arrow back" href="#" @click.prevent="$refs.carousel.goToPrev()">
+              <span>prev</span>
+              <arrow-back/>
+            </a>
+            <a class="project__slider-arrow forward" href="#" @click.prevent="$refs.carousel.goToNext()">
+              <arrow-forward-long/>
+              <span>next</span>
+            </a>
+          </div>
+        </template>
+      </TheFooter>
     </div>
   </section>
 </template>
@@ -23,18 +41,33 @@
 import TheHeader from '@/components/TheHeader';
 import TheFooter from '@/components/TheFooter';
 import TheMenu from "@/components/TheMenu";
+import ArrowBack from "@/assets/icons/arrowBack";
+import ArrowForwardLong from "@/assets/icons/arrowForwardLong";
+import {VueAgile} from "vue-agile";
 
 export default {
   name: 'ProjectView',
-  components: {TheMenu, TheHeader, TheFooter},
+  components: {ArrowForwardLong, ArrowBack, TheMenu, TheHeader, TheFooter, VueAgile},
   data() {
     return {
       slideIndex: 0,
+      options: {
+        navButtons: false,
+        dots: false,
+        infinite: true,
+        settings: {
+          slidesToShow: 1,
+        }
+      },
       item: {
         id: 1,
         title: 'coche deportivo',
         description: 'iPerformance',
-        images: [`url(${require('@/assets/service/1.png')})`, `url(${require('@/assets/service/1.png')})`, `url(${require('@/assets/service/1.png')})`],
+        images: [
+          'https://cdn.pixabay.com/photo/2017/10/16/23/18/lamborghini-2859047_960_720.jpg',
+          'https://cdn.pixabay.com/photo/2017/05/06/05/41/streak-2288981_960_720.jpg',
+          'https://cdn.pixabay.com/photo/2017/02/23/01/28/chevrolet-2091110_960_720.jpg'
+        ],
       },
     }
   }
@@ -43,6 +76,26 @@ export default {
 
 <style scoped lang="scss">
 @import "src/styles/variables";
+
+.project__slider {
+  z-index: -1;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.project__slider-item {
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
 
 .project__content {
   position: relative;
@@ -75,5 +128,39 @@ export default {
   letter-spacing: 0.05em;
   color: $light-text;
   opacity: 0.5;
+}
+
+.project__slider-nav {
+}
+
+.project__slider-arrow {
+  &.back {
+    padding-right: 1.5vw;
+    color: #E0E0E0;
+
+    span {
+      padding-right: 1.5vw;
+      text-align: right;
+    }
+  }
+
+  &.forward {
+    padding-left: 1.5vw;
+    color: $orange;
+
+    span {
+      padding-left: 1.5vw;
+    }
+  }
+
+  span {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: calc(44 / 18);
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: $white;
+    opacity: 0.5;
+  }
 }
 </style>

@@ -17,35 +17,77 @@
 
       <TheMenu/>
 
-      <ol class="section__content service-gallery__content service-gallery__slider">
-        <li v-for="item in items" :key="item"
-            class="service-gallery__slide"
-            :class="{active: item.id === 1}">
-          <router-link :to="{name: 'project', id: 1}"
-                       class="service-gallery__slide-inner"
-                       :class="{active: item.id === 1}"
-                       :style="{backgroundImage: item.img}">
-            <h3>{{ item.title }}</h3>
-            <small>{{ item.description }}</small>
-          </router-link>
-        </li>
-      </ol>
+      <div class="section__content service-gallery__content">
+        <carousel ref="carousel" :options="options" class="service-gallery__slider">
+          <div v-for="item in items" class="service-gallery__slide">
+            <router-link :to="{name: 'project', id: 1}"
+                         class="service-gallery__slide-inner"
+                         :class="{active: item.id === 1}"
+                         :style="{backgroundImage: item.img}">
+              <h3>{{ item.title }}</h3>
+              <small>{{ item.description }}</small>
+            </router-link>
+          </div>
+        </carousel>
+      </div>
 
-      <TheFooter/>
+
+      <TheFooter>
+        <template v-slot:left>
+          <div class="service-gallery__slider-nav">
+            <a href="#" class="service-gallery__slider-arrow back" @click.prevent="$refs.carousel.goToPrev()">
+              <arrow-back class="service-gallery__slider-icon"/>
+            </a>
+            <a href="#" class="service-gallery__slider-arrow forward" @click.prevent="$refs.carousel.goToNext()">
+              <arrow-forward class="service-gallery__slider-icon"/>
+            </a>
+          </div>
+        </template>
+        <template v-slot:right>
+          <router-link :to="{name: 'contacts'}" class="header__go-back">contactos</router-link>
+        </template>
+      </TheFooter>
     </div>
   </section>
 </template>
 
 <script>
+import {VueAgile} from 'vue-agile'
 import TheHeader from '@/components/TheHeader';
 import TheFooter from '@/components/TheFooter';
 import TheMenu from "@/components/TheMenu";
+import ArrowBack from "@/assets/icons/arrowBack";
+import ArrowForward from "@/assets/icons/arrowForward";
 
 export default {
   name: 'ServiceGalleryView',
-  components: {TheMenu, TheHeader, TheFooter},
+  components: {
+    ArrowForward,
+    ArrowBack,
+    TheMenu, TheHeader, TheFooter,
+    carousel: VueAgile,
+  },
   data() {
     return {
+      options: {
+        navButtons: false,
+        dots: false,
+        infinite: true,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+            }
+          },
+          {
+            breakpoint: 900,
+            settings: {
+              slidesToShow: 4,
+            }
+          }
+        ]
+      },
       items: [
         {
           id: 1,
@@ -71,6 +113,30 @@ export default {
           description: 'Series',
           img: `url(${require('@/assets/service/1.png')})`,
         },
+        {
+          id: 5,
+          title: 'coche deportivo',
+          description: 'iPerformance',
+          img: `url(${require('@/assets/service/1.png')})`,
+        },
+        {
+          id: 6,
+          title: 'Mercedes',
+          description: 'Coupe',
+          img: `url(${require('@/assets/service/1.png')})`,
+        },
+        {
+          id: 7,
+          title: 'porsche',
+          description: 'Grand Coupe',
+          img: `url(${require('@/assets/service/1.png')})`,
+        },
+        {
+          id: 8,
+          title: 'BMW 8',
+          description: 'Series',
+          img: `url(${require('@/assets/service/1.png')})`,
+        },
       ]
     }
   }
@@ -84,23 +150,37 @@ export default {
 }
 
 .service-gallery__container {
+  padding-right: 100px;
+}
+
+.service-gallery__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-items: stretch;
+
+  //  @todo add decoration to menu
+  //&:before {
+  //  content: '';
+  //  position: absolute;
+  //  height: 100%;
+  //  width: 50px;
+  //  left: 100%;
+  //  top: 50%;
+  //  transform: translateY(-50%);
+  //  border: 1px solid #4F4F4F;
+  //  border-right: none;
+  //  border-radius: 100px;
+  //}
 }
 
 .service-gallery__slider {
-  height: 100%;
   margin: 0 -.5rem;
-  display: flex;
-  align-items: stretch;
-  list-style: none;
 }
 
 .service-gallery__slide {
+  height: 60vh;
   padding: 0 .5rem;
-  flex-basis: calc(65% / 3);
-
-  &.active {
-    flex-basis: 35%;
-  }
 }
 
 .service-gallery__slide-inner {
@@ -147,6 +227,44 @@ export default {
   }
 }
 
-.service-gallery__content {
+.service-gallery__slider-nav {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: url("@/assets/arrov_bgr.png") center / contain no-repeat;
+    @media (min-width: add-unit($base-container-width, px)) {
+      width: 126px;
+      height: 120px;
+    }
+    @media (max-width: add-unit($base-container-width - .2, px)) {
+      width: 7vw;
+      height: 10vh;
+    }
+  }
+}
+
+.service-gallery__slider-arrow {
+  max-width: 4.5vw;
+
+  &.back {
+    padding-right: 1.5vw;
+    color: #E0E0E0;
+  }
+
+  &.forward {
+    padding-left: 1.5vw;
+    color: $orange;
+  }
+}
+
+.service-gallery__slider-icon {
+  max-width: 100%;
 }
 </style>
