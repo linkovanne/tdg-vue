@@ -78,6 +78,12 @@ export default {
 
 .footer__copyright {
   margin: 0;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: calc(21/16);
+  letter-spacing: 0.05em;
+  color: #F2F2F2;
+  opacity: 0.5;
   @media (max-width: 767.98px) {
     display: none;
   }
@@ -93,10 +99,14 @@ export default {
 
 .footer__socials-link {
   color: $white;
+  opacity: .5;
 
   & + .footer__socials-link {
-    @media (min-width: 768px) {
-      padding-left: 78px;
+    @media (min-width: add-unit($base-container-width, px)) {
+      padding-left: px2rem(78px);
+    }
+    @media (max-width: add-unit($base-container-width - .2, px)) and (min-width: 768px) {
+      padding-left: set-relative-height(78px);
     }
   }
 }
@@ -110,7 +120,7 @@ export default {
 }
 
 .footer__content-col {
-  flex-basis: calc(100% / 3);
+  //flex-basis: calc(100% / 3);
 
   &.left {
     text-align: left;

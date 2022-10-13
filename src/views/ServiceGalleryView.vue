@@ -20,9 +20,8 @@
       <div class="section__content service-gallery__content">
         <carousel ref="carousel" :options="options" class="service-gallery__slider">
           <div v-for="item in items" class="service-gallery__slide">
-            <router-link :to="{name: 'project', id: 1}"
+            <router-link :to="{name: 'project'}"
                          class="service-gallery__slide-inner"
-                         :class="{active: item.id === 1}"
                          :style="{backgroundImage: item.img}">
               <h3>{{ item.title }}</h3>
               <small>{{ item.description }}</small>
@@ -151,12 +150,13 @@ export default {
 
 .service-gallery__container {
   padding-right: 100px;
+  padding-bottom: calc(5.5vh + add-unit($base-footer-content-height, px) + add-unit($relative-footer-padding-bottom, vh));
 }
 
 .service-gallery__content {
   position: relative;
   width: 100%;
-  height: 100%;
+  //height: 100%;
   align-items: stretch;
 
   //  @todo add decoration to menu
@@ -179,8 +179,26 @@ export default {
 }
 
 .service-gallery__slide {
-  height: 60vh;
+  height: set-relative-height(700px);
   padding: 0 .5rem;
+
+  &.agile__slide--active {
+    .service-gallery__slide-inner {
+      position: relative;
+      padding: px2rem(28px) px2rem(41px);
+
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 68.5%;
+        height: 5px;
+
+        background: #EB5757;
+      }
+    }
+  }
 }
 
 .service-gallery__slide-inner {
@@ -191,22 +209,6 @@ export default {
   justify-content: flex-end;
 
   background: top center / cover no-repeat;
-
-  &.active {
-    position: relative;
-    padding: px2rem(28px) px2rem(41px);
-
-    &:before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 68.5%;
-      height: 5px;
-
-      background: #EB5757;
-    }
-  }
 
   h3 {
     font-weight: 700;

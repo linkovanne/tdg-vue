@@ -15,84 +15,15 @@
           <TheMenuButton class="the-menu-content__icon" :is-opened="true" @click="$emit('close-menu')"/>
 
           <ul class="the-menu-content__list">
-            <li>
-              <router-link :to="{
-                name: 'service',
-                params: { id: '1' },
-              }">
-                Lavado de Mantenimiento
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="{
-                name: 'service',
-                params: { id: '1' },
-              }">
-                Limpieza Integral
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="{
-                name: 'service',
-                params: { id: '1' },
-              }">
-                Detailing Interior
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="{
-                name: 'service',
-                params: { id: '1' },
-              }">
-                Tratamiento cerámico de Cuero
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="{
-                name: 'service',
-                params: { id: '1' },
-              }">
-                Pulido
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="{
-                name: 'service',
-                params: { id: '1' },
-              }">
-                Tratamiento Cerámico de Cristales (antilluvia)
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="{
-                  name: 'service',
-                  params: { id: '1' },
-                }">
-                Tratamiento Cerámico de llantas
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="{
-                name: 'service',
-                params: { id: '1' },
-              }">
-                Tratamiento Cerámico de plasticos
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="{
-                name: 'service',
-                params: { id: '1' },
-              }">
-                Tratamiento de Cera Carnauba
-              </router-link>
+            <li v-for="service in services">
+              <router-link :to="{ name: 'service' }">{{ service }}</router-link>
             </li>
           </ul>
         </div>
       </div>
     </div>
 
-      <TheFooter/>
+    <TheFooter/>
   </div>
 </template>
 
@@ -110,6 +41,21 @@ export default {
     TheProject,
     TheFooter,
   },
+  data() {
+    return {
+      services: [
+        'Lavado de Mantenimiento',
+        'Limpieza Integral',
+        'Detailing Interior',
+        'Tratamiento cerámico de Cuero',
+        'Pulido',
+        'Tratamiento Cerámico de Cristales (antilluvia)',
+        'Tratamiento Cerámico de llantas',
+        'Tratamiento Cerámico de plasticos',
+        'Tratamiento de Cera Carnauba'
+      ],
+    }
+  }
 }
 </script>
 
@@ -163,7 +109,7 @@ export default {
     flex-direction: column;
     justify-content: flex-end;
     @media (max-width: 1023.98px) {
-      padding-top: 7.75vh; // 63px for $base-height-mob
+      padding-top: set-relative-height(63px);
       order: 1;
     }
   }
@@ -234,12 +180,12 @@ export default {
   overflow-y: auto;
   list-style: none;
   @media (min-width: 1024px) {
-    max-height: add-unit(814 * 100 / $base-height, vh);
+    max-height: set-relative-height(814px);
     padding-left: 30%;
     padding-right: 60px;
   }
   @media (max-width: 1023.98px) {
-    max-height: add-unit(234 * 100 / $base-height, vh);
+    max-height: set-relative-height(234px);
   }
 
   li {

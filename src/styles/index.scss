@@ -5,12 +5,19 @@
   box-sizing: border-box;
 }
 
+html {
+  @media (min-width: add-unit($base-container-width, px)) {
+    font-size: 16px;
+  }
+  @media (max-width: add-unit($base-container-width - .2, px)) {
+    font-size: set-relative-height(16px);
+  }
+}
+
 body {
   margin: 0;
   width: 100%;
-  //font-size: var(--body);
   font-family: $font-main;
-  //font-weight: 400;
   color: $white;
   background: $main-bgr;
 }

@@ -8,7 +8,7 @@
     <div class="section__container project__container">
       <TheHeader>
         <template v-slot:left>
-          <router-link :to="{name: 'serviceGallery', id: 1}" class="header__go-back">back</router-link>
+          <router-link :to="{name: 'serviceGallery'}" class="header__go-back">back</router-link>
         </template>
       </TheHeader>
 
@@ -99,12 +99,12 @@ export default {
 
 .project__content {
   position: relative;
-  padding-bottom: 32px;
+  padding-bottom: set-relative-height(32px);
 
   &:before {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: 7vh;
     left: 0;
     width: 100%;
     max-width: 418px;
@@ -155,12 +155,22 @@ export default {
 
   span {
     font-weight: 500;
-    font-size: 18px;
-    line-height: calc(44 / 18);
+    font-size: px2rem(18px);
+    line-height: 2.4;
     letter-spacing: 0.5em;
     text-transform: uppercase;
     color: $white;
     opacity: 0.5;
+  }
+}
+
+.project__slider-icon {
+  &.back {
+    max-width: 3vw;
+  }
+
+  &.forward {
+    max-width: 7.5vw;
   }
 }
 </style>

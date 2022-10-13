@@ -95,8 +95,8 @@ export default {
   &.text {
     position: relative;
     @media (min-width: 1024px) {
-      padding-top: calc(100vh * 105 / $base-height);
-      padding-left: calc(100vw * 70 / $base-content-width);
+      padding-top: set-relative-height(105px);
+      padding-left: set-relative-width(70px);
     }
     @media (max-width: 1023.98px) {
       margin-top: 7.75vh;
@@ -111,8 +111,8 @@ export default {
       left: 0;
       background: url("@/assets/quotes.png") top center / contain no-repeat;
       @media (min-width: 1024px) {
-        width: calc(100vw * 234 / $base-content-width);
-        height: calc(100vh * 185 / $base-height);
+        width: set-relative-width(234px);
+        height: set-relative-height(185px);
       }
       @media (max-width: 1023.98px) {
         width: 29.6vw;
@@ -136,16 +136,11 @@ export default {
 
     p {
       font-weight: 700;
+      font-size: 1rem;
       line-height: 1.34;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: $orange;
-      @media (min-width: 1024px) {
-        font-size: 1rem;
-      }
-      @media (max-width: 1023.98px) {
-        font-size: 2vh; // 16px
-      }
     }
   }
 }

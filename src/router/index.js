@@ -16,7 +16,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "about" */ '../views/ContactsView.vue')
     },
     {
-        path: '/service/:id',
+        path: '/service', // /:id
         name: 'service',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -24,7 +24,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "about" */ '../views/ServiceView.vue')
     },
     {
-        path: '/service/:id/gallery',
+        path: '/service/gallery', // /:id
         name: 'serviceGallery',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -32,7 +32,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "about" */ '../views/ServiceGalleryView.vue')
     },
     {
-        path: '/service/:id/form',
+        path: '/service/form', // /:id
         name: 'contactForm',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -40,7 +40,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "about" */ '../views/ContactFormView.vue')
     },
     {
-        path: '/project/:id',
+        path: '/project', // /:id
         name: 'project',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route

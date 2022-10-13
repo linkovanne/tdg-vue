@@ -2,7 +2,6 @@
 
 @function strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {
-    //@return $number / ($number * 0 + 1);
     @return math.div($number, $number * 0 + 1);
   }
 
@@ -13,11 +12,18 @@
   @return $number + $unit;
 }
 
-@function px2rem( $px ) {
-  //@return strip-unit($px) / 16 + rem;
+@function px2rem($px) {
   @return math.div(strip-unit($px), 16) + rem;
 }
 
-@function rem2px( $rem ) {
+@function rem2px($rem) {
   @return strip-unit($rem) * 16 + px;
+}
+
+@function set-relative-width ($number) {
+  @return add-unit(strip-unit($number) * 100 / $base-width, vw);
+}
+
+@function set-relative-height ($number) {
+  @return add-unit(strip-unit($number) * 100 / $base-height, vh);
 }

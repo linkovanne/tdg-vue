@@ -2,13 +2,12 @@
 @import "src/styles/mixins/convert";
 
 .ui-button {
-  min-height: 60px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   font-weight: 500;
+  font-size: px2rem(20px);
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -17,18 +16,21 @@
   border: 4px solid $orange;
   background: $orange;
   border-radius: 2px;
-  @media (min-width: 1024px) {
+  @media (min-width: add-unit($base-container-width, px)) {
+    min-height: 60px;
     padding-left: 65px;
     padding-right: 55px;
-
-    font-size: px2rem(20px);
+    line-height: 1.75;
+  }
+  @media (max-width: add-unit($base-container-width - .2, px)) {
+    min-height: set-relative-height(60px);
+    padding-left: set-relative-width(65px);
+    padding-right: set-relative-width(55px);
     line-height: 1.75;
   }
   @media (max-width: 1023.98px) {
-    padding-left: 4vh; // or 33px
-    padding-right: 4vh; // or 33px
-
-    font-size: 2.5vh; // or px2rem(20px)
+    padding-left: set-relative-width(33px);
+    padding-right: set-relative-width(33px);
     line-height: 1.3;
   }
 
