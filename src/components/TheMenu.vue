@@ -1,6 +1,6 @@
 <template>
   <div class="the-menu">
-    <a href="#" class="the-menu__burger" @click.prevent="isMenuOpened = true">
+    <a href="#" class="the-menu__burger" @click.prevent="isMenuOpened = !isMenuOpened">
       <TheMenuButton :isOpened="isMenuOpened"/>
     </a>
 
@@ -42,6 +42,7 @@ export default {
     transform: translateY(-50%);
   }
   @media (max-width: 1023.98px) {
+    z-index: 1001;
     top: calc(add-unit($relative-header-padding-top, vh) + 14px);
     //height: add-unit($relative-header-content-height, vh);
   }

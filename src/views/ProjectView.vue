@@ -8,7 +8,7 @@
     <div class="section__container project__container">
       <TheHeader>
         <template v-slot:left>
-          <router-link :to="{name: 'serviceGallery'}" class="header__go-back">back</router-link>
+          <router-link :to="{name: 'serviceGallery'}" class="ui-link">back</router-link>
         </template>
       </TheHeader>
 
@@ -99,17 +99,29 @@ export default {
 
 .project__content {
   position: relative;
-  padding-bottom: set-relative-height(32px);
+  @media (min-width: add-unit($base-container-width, px)) {
+    padding-bottom: 106px;
+  }
+  @media (max-width: add-unit($base-container-width - .2, px)) {
+    padding-bottom: set-relative-height(106px);
+  }
 
   &:before {
     content: '';
     position: absolute;
-    bottom: 7vh;
     left: 0;
     width: 100%;
-    max-width: 418px;
-    height: 5px;
     background: $orange;
+    @media (min-width: add-unit($base-container-width, px)) {
+      bottom: 76px;
+      max-width: 418px;
+      height: 5px;
+    }
+    @media (max-width: add-unit($base-container-width - .2, px)) {
+      bottom: set-relative-height(76px);
+      max-width: set-relative-width(418px);
+      height: set-relative-height(5px);
+    }
   }
 }
 

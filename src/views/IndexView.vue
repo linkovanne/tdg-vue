@@ -3,12 +3,10 @@
     <div class="section__container index__container">
       <TheHeader>
         <template v-slot:left>
-          <router-link :to="{name: 'index'}" class="header__logo">
-            <img src="@/assets/logo.png" alt="logo">
-          </router-link>
+          <header-logo/>
         </template>
         <template v-slot:right>
-          <router-link :to="{name: 'contacts'}" href="" class="header__link">contactos</router-link>
+          <router-link :to="{name: 'contacts'}" class="ui-link">contactos</router-link>
         </template>
       </TheHeader>
 
@@ -30,10 +28,11 @@
 import TheMenu from '@/components/TheMenu';
 import TheHeader from '@/components/TheHeader';
 import TheFooter from "@/components/TheFooter";
+import HeaderLogo from "@/components/HeaderLogo";
 
 export default {
   name: 'IndexView',
-  components: {TheMenu, TheHeader, TheFooter},
+  components: {HeaderLogo, TheMenu, TheHeader, TheFooter},
 }
 </script>
 

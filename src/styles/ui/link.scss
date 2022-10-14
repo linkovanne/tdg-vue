@@ -1,0 +1,12 @@
+@import "src/styles/variables";
+@import "src/styles/mixins/convert";
+
+.ui-link {
+  font-weight: 500;
+  font-size: px2rem(18px);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $white;
+  opacity: 0.5;
+}

@@ -3,15 +3,15 @@
     <div class="section__container service-gallery__container">
       <TheHeader>
         <template v-slot:left>
-          <router-link :to="{name: 'service'}" class="header__go-back">back</router-link>
+          <router-link :to="{name: 'service'}" class="ui-link">back</router-link>
         </template>
         <template v-slot:middle>
-          <router-link :to="{name: 'index'}" class="header__logo">
-            <img src="@/assets/logo.png" alt="logo">
-          </router-link>
+          <header-logo/>
         </template>
         <template v-slot:right>
-          <a href="#" class="ui-button" style="transform: translateX(20px);">Contáctate con nosotros</a>
+          <router-link :to="{name: 'contactForm'}" class="ui-button" style="transform: translateX(20px);">
+            Contáctate con nosotros
+          </router-link>
         </template>
       </TheHeader>
 
@@ -43,7 +43,7 @@
           </div>
         </template>
         <template v-slot:right>
-          <router-link :to="{name: 'contacts'}" class="header__go-back">contactos</router-link>
+          <router-link :to="{name: 'contacts'}" class="ui-link">contactos</router-link>
         </template>
       </TheFooter>
     </div>
@@ -57,10 +57,12 @@ import TheFooter from '@/components/TheFooter';
 import TheMenu from "@/components/TheMenu";
 import ArrowBack from "@/assets/icons/arrowBack";
 import ArrowForward from "@/assets/icons/arrowForward";
+import HeaderLogo from "@/components/HeaderLogo";
 
 export default {
   name: 'ServiceGalleryView',
   components: {
+    HeaderLogo,
     ArrowForward,
     ArrowBack,
     TheMenu, TheHeader, TheFooter,

@@ -4,6 +4,9 @@
 
     <div class="section__container">
       <div class="section__content the-menu-content__content">
+        <div class="the-menu-content__col top">
+          <router-link :to="{name: 'contacts'}" class="ui-link">contactos</router-link>
+        </div>
         <div class="the-menu-content__col left">
           <h2 class="the-menu-content__title">Servicios TDG</h2>
           <div class="the-menu-content__slogan">Cada coche tiene más de una vida</div>
@@ -91,6 +94,7 @@ export default {
   @media (min-width: 1024px) {
   }
   @media (max-width: 1023.98px) {
+    padding-top: set-relative-height(50px);
     padding-bottom: 6.5vw;
     flex-direction: column;
     justify-content: flex-end;
@@ -105,6 +109,15 @@ export default {
   @media (max-width: 1023.98px) {
   }
 
+  &.top {
+    @media (min-width: 1024px) {
+      display: none;
+    }
+    @media (max-width: 1023.98px) {
+      margin-bottom: auto;
+    }
+  }
+
   &.left {
     flex-direction: column;
     justify-content: flex-end;
@@ -117,18 +130,18 @@ export default {
   &.right {
     position: relative;
     align-items: flex-end;
-  }
-}
 
-.the-menu-content__icon {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  left: 10%;
-  transform: translateY(-50%);
-  color: $orange;
-  @media (max-width: 1023.98px) {
-    display: none;
+    .the-menu-content__icon {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+      color: $orange;
+      @media (max-width: 1023.98px) {
+        display: none;
+      }
+    }
   }
 }
 

@@ -14,17 +14,17 @@
 
     <div class="header__container mob">
       <div class="header__col header__col_left">
-        <router-link :to="{name: 'index'}" class="header__logo">
-          <img src="@/assets/logo.png" alt="logo">
-        </router-link>
+        <header-logo/>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import HeaderLogo from "@/components/HeaderLogo";
 export default {
   name: 'TheHeader',
+  components: {HeaderLogo},
 }
 </script>
 
