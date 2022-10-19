@@ -12,6 +12,9 @@
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
+    "@googlemaps/js-api-loader": "^1.14.3",
+    "@googlemaps/markerclusterer": "^2.0.13",
+    "@types/google.maps": "^3.50.4",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0",

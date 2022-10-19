@@ -10,10 +10,10 @@
     </TheHeader>
 
     <div class="section__container contacts__container">
-      centro de detailing Tdg
+      <GoogleMap style="height: 100%; width: 100%;"/>
     </div>
 
-    <TheFooter />
+    <TheFooter/>
   </section>
 </template>
 
@@ -21,14 +21,22 @@
 import TheHeader from '@/components/TheHeader';
 import TheFooter from '@/components/TheFooter';
 import HeaderLogo from "@/components/HeaderLogo";
+import GoogleMap from "@/components/GoogleMap";
 
 export default {
   name: 'ContactsView',
-  components: {HeaderLogo, TheHeader, TheFooter}
+  components: {GoogleMap, HeaderLogo, TheHeader, TheFooter}
 }
 </script>
 
 <style scoped lang="scss">
 @import "src/styles/variables";
 
+.contacts {
+  background: rgb(32, 33, 33);
+}
+
+.contacts__container {
+  padding: 0;
+}
 </style>
