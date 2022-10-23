@@ -1,62 +1,58 @@
 <template>
   <div class="google-map">
     <div class="google-map__container" ref="googleMap"></div>
-    <div class="google-map-marker">
-      <img class="google-map-marker__img" src="@/assets/contact/marker_bgr.png" alt="marker bgr">
-      <p class="google-map-marker__text">centro de detailing Tdg</p>
-    </div>
   </div>
 </template>
 
 <script>
 import {LINE_PATH_CONFIG, mapSettings} from "@/constants/mapSettings";
 import {Loader} from "@googlemaps/js-api-loader";
-import {MarkerClusterer} from "@googlemaps/markerclusterer";
 
 export default {
   name: 'GoogleMap',
   data() {
     return {
       apiKey: 'AIzaSyCC47tTo1KFZ_llqms1sjfa_4pp_W-tDyk',
-      markers: [{
+      google: null,
+      map: null,
+      marker: {
         position: {
           lat: 38.34595485345161,
           lng: -0.522200831099699,
         },
         icon: LINE_PATH_CONFIG,
-      }],
+      },
     };
   },
   async mounted() {
-    this.initializeMap();
+    this.google = await new Loader({
+      apiKey: this.apiKey
+    });
+
+    this.initMap();
   },
   methods: {
-    initializeMap() {
-      // https://ru.vuejs.org/v2/cookbook/practical-use-of-scoped-slots.html
-      // https://developers.google.com/maps/documentation/javascript/adding-a-google-map#maps_add_map-javascript
-      // https://developers.google.com/maps/documentation/javascript/marker-clustering#npm_1
-      const google = new Loader({
-        apiKey: this.apiKey
-      });
-
-      google
+    initMap() {
+      this.google
           .load()
           .then((google) => {
-            new google.maps.Map(this.$refs.googleMap, this.mapConfig);
-            // new MarkerClusterer({map: google.maps.Map, markers: this.markers});
-
-            // or
-
-            // new google.maps.Marker({
-            //   position: this.mapConfig.position,
-            //   map: google.maps.Map,
-            // })
+            this.map = new google.maps.Map(this.$refs.googleMap, this.mapConfig);
           })
+          .then(() => this.initMarker())
           .catch(e => {
-            console.log(`==> error: ${e}`)
             // do something
+            console.log(`==> error: ${e}`)
           });
-    }
+    },
+    initMarker() {
+      this.google.load().then((google) => new google.maps.Marker({
+        position: {
+          lat: this.marker.position.lat,
+          lng: this.marker.position.lng
+        },
+        map: this.map,
+      }))
+    },
   },
   computed: {
     mapConfig() {
@@ -114,6 +110,7 @@ export default {
   @media (max-width: add-unit($base-container-width - .2, px)) {
     font-size: 1.15vw;
   }
+
   &:before {
     content: '';
     width: 152.67px;
