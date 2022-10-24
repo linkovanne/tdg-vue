@@ -111,7 +111,7 @@ export default {
     position: absolute;
     left: 0;
     width: 100%;
-    background: $orange;
+    background: $red;
     @media (min-width: add-unit($base-container-width, px)) {
       bottom: 76px;
       max-width: 418px;
@@ -158,7 +158,7 @@ export default {
 
   &.forward {
     padding-left: 1.5vw;
-    color: $orange;
+    color: $red;
 
     span {
       padding-left: 1.5vw;

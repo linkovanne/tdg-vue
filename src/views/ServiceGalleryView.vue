@@ -264,7 +264,7 @@ export default {
 
   &.forward {
     padding-left: 1.5vw;
-    color: $orange;
+    color: $red;
   }
 }
 

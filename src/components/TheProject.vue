@@ -79,7 +79,7 @@ export default {
 
   strong {
     display: block;
-    color: $orange;
+    color: $red;
     @media (max-width: 575.98px) {
       margin-top: px2rem(14px);
     }
@@ -88,7 +88,7 @@ export default {
 
 .the-project__action {
   margin-top: px2rem(48px);
-  color: $orange;
+  color: $red;
   @media (max-width: 575.98px) {
     display: none;
   }

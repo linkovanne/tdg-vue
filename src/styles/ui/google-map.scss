@@ -1,0 +1,71 @@
+@import "src/styles/variables";
+@import "src/styles/mixins/convert";
+
+.gm-style {
+  // popup content
+  .gm-style-iw {
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: inherit !important;
+  }
+
+  .gm-style-iw-d {
+    padding: 0;
+    overflow: inherit !important;
+    transform: translateX(-50%);
+  }
+
+  // close btn
+  button {
+    display: none !important;
+  }
+
+  // popup tail
+  .gm-style-iw-tc {
+    display: none;
+  }
+}
+
+.google-map-marker {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 18px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 35%;
+    height: 2px;
+    background: $red;
+  }
+}
+
+.google-map-marker__text {
+  position: relative;
+  padding-top: 50%;
+  font-weight: 700;
+  line-height: calc(39 / 22);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $white;
+  background: url("@/assets/contact/marker_bgr.png") top center / contain no-repeat;
+  @media (min-width: add-unit($base-container-width, px)) {
+    font-size: px2rem(22px);
+  }
+  @media (max-width: add-unit($base-container-width - .2, px)) {
+    font-size: 1.15vw;
+  }
+
+  &:before {
+    content: '';
+    width: 152.67px;
+    height: 2px;
+    left: 480px;
+    top: 462px;
+    background: $red;
+  }
+}

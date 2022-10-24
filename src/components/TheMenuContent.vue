@@ -137,7 +137,7 @@ export default {
       top: 50%;
       left: 10%;
       transform: translateY(-50%);
-      color: $orange;
+      color: $red;
       @media (max-width: 1023.98px) {
         display: none;
       }
@@ -227,7 +227,7 @@ export default {
     }
 
     &:hover {
-      color: $orange;
+      color: $red;
     }
   }
 }

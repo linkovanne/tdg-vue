@@ -139,7 +139,7 @@ export default {
       line-height: 1.34;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: $orange;
+      color: $red;
     }
   }
 }

@@ -36,7 +36,7 @@ export default {
   z-index: 1000;
   position: absolute;
   right: 20px;
-  color: $orange;
+  color: $red;
   @media (min-width: 1024px) {
     top: 50%;
     transform: translateY(-50%);
