@@ -112,11 +112,13 @@ export default {
 }
 
 .footer__content {
-  padding: 0 4vw;
   flex: 1 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (min-width: 768px) {
+    padding: 0 4vw;
+  }
 }
 
 .footer__content-col {

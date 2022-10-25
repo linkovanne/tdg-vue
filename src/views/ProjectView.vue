@@ -1,5 +1,5 @@
 <template>
-  <section class="section project" :style="{backgroundImage: item.images[slideIndex]}">
+  <section class="section project">
     <VueAgile ref="carousel" :options="options" class="project__slider">
       <div v-for="img in item.images" class="project__slider-item">
         <img :src="img" alt="">
@@ -77,6 +77,12 @@ export default {
 <style scoped lang="scss">
 @import "src/styles/variables";
 
+.section__container {
+  @media (max-width: 767.98px) {
+    padding-bottom: calc($section-padding-bottom + 5vh + 33px);
+  }
+}
+
 .project__slider {
   z-index: -1;
   overflow: hidden;
@@ -143,12 +149,28 @@ export default {
 }
 
 .project__slider-nav {
+  display: flex;
+  align-items: center;
+  @media (max-width: 767.98px) {
+    padding-bottom: 5vh;
+  }
 }
 
 .project__slider-arrow {
+  display: flex;
+  align-items: center;
+  @media (max-width: 767.98px) {
+    svg {
+      max-width: 100%;
+    }
+  }
+
   &.back {
     padding-right: 1.5vw;
     color: #E0E0E0;
+    @media (max-width: 767.98px) {
+      flex-basis: 40%;
+    }
 
     span {
       padding-right: 1.5vw;
@@ -159,6 +181,9 @@ export default {
   &.forward {
     padding-left: 1.5vw;
     color: $red;
+    @media (max-width: 767.98px) {
+      flex-basis: 60%;
+    }
 
     span {
       padding-left: 1.5vw;

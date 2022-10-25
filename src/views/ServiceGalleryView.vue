@@ -32,7 +32,7 @@
 
 
       <TheFooter>
-        <template v-slot:left>
+        <template v-if="!isMobile" v-slot:left>
           <div class="service-gallery__slider-nav">
             <a href="#" class="service-gallery__slider-arrow back" @click.prevent="$refs.carousel.goToPrev()">
               <arrow-back class="service-gallery__slider-icon"/>
@@ -42,7 +42,17 @@
             </a>
           </div>
         </template>
-        <template v-slot:right>
+        <template v-if="isMobile" v-slot:middle>
+          <div class="service-gallery__slider-nav">
+            <a href="#" class="service-gallery__slider-arrow back" @click.prevent="$refs.carousel.goToPrev()">
+              <arrow-back class="service-gallery__slider-icon"/>
+            </a>
+            <a href="#" class="service-gallery__slider-arrow forward" @click.prevent="$refs.carousel.goToNext()">
+              <arrow-forward class="service-gallery__slider-icon"/>
+            </a>
+          </div>
+        </template>
+        <template v-if="!isMobile" v-slot:right>
           <router-link :to="{name: 'contacts'}" class="ui-link">contactos</router-link>
         </template>
       </TheFooter>
@@ -70,6 +80,7 @@ export default {
   },
   data() {
     return {
+      isMobile: false,
       options: {
         navButtons: false,
         dots: false,
@@ -138,9 +149,25 @@ export default {
           description: 'Series',
           img: `url(${require('@/assets/service/1.png')})`,
         },
-      ]
+      ],
     }
-  }
+  },
+  created() {
+    this.toggleWindowSize();
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', () => this.toggleWindowSize());
+    });
+  },
+  methods: {
+    toggleWindowSize() {
+      this.isMobile = window.innerWidth < 768;
+    },
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', () => this.toggleWindowSize());
+  },
 }
 </script>
 
@@ -151,8 +178,13 @@ export default {
 }
 
 .service-gallery__container {
-  padding-right: 100px;
-  padding-bottom: calc(5.5vh + add-unit($base-footer-content-height, px) + add-unit($relative-footer-padding-bottom, vh));
+  @media (min-width: 768px) {
+    padding-right: 100px;
+    padding-bottom: calc(5.5vh + add-unit($base-footer-content-height, px) + add-unit($relative-footer-padding-bottom, vh));
+  }
+  @media (max-width: 767.98px) {
+    padding-bottom: calc(5.5vh + add-unit($base-footer-content-height, px) + add-unit($relative-footer-padding-bottom, vh) + 5vh);
+  }
 }
 
 .service-gallery__content {
@@ -235,9 +267,11 @@ export default {
   position: relative;
   display: inline-flex;
   align-items: center;
+  @media (max-width: 767.98px) {
+    padding-bottom: 5vh;
+  }
 
   &:before {
-    content: '';
     position: absolute;
     left: 50%;
     top: 50%;
@@ -251,20 +285,35 @@ export default {
       width: 7vw;
       height: 10vh;
     }
+    @media (min-width: 768px) {
+      content: '';
+    }
   }
 }
 
 .service-gallery__slider-arrow {
-  max-width: 4.5vw;
+  @media (min-width: 768px) {
+    max-width: 4.5vw;
+  }
 
   &.back {
-    padding-right: 1.5vw;
     color: #E0E0E0;
+    @media (min-width: 768px) {
+      padding-right: 1.5vw;
+    }
+    @media (max-width: 767.98px) {
+      padding-right: 5vw;
+    }
   }
 
   &.forward {
-    padding-left: 1.5vw;
     color: $red;
+    @media (min-width: 768px) {
+      padding-left: 1.5vw;
+    }
+    @media (max-width: 767.98px) {
+      padding-left: 5vw;
+    }
   }
 }
 
