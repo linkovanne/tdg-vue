@@ -14,9 +14,9 @@
 
       <div class="section__content service__content">
         <h2 class="service__title">Servicios TDG</h2>
-        <div class="service__info">
+        <div v-if="service" class="service__info">
           <div class="service__info-col">
-            <h3 class="service__info-title">Pulido</h3>
+            <h3 class="service__info-title">{{ service.label }}</h3>
             <ul class="service__info-list">
               <li class="service__info-item">Pulido Abrillantado + Cera Carnauba</li>
               <li class="service__info-item">Detailing + Tratamiento Cerámico Gyeone Infinite</li>
@@ -27,14 +27,7 @@
             </div>
           </div>
           <div class="service__info-col description">
-            <p class="service__info-description">
-              Es un lavado a mano detallado del exterior con limpieza de llantas en dos pasos, aspiración completa del
-              interior del vehículo con maletero incluido, limpieza detallada de salpicadero,
-              volante y consola central y un buen repaso del
-              resto de superficies. <br>
-
-              Encerado de coche con cera liquida de alta calidad. (Duración 2-3h)
-            </p>
+            <p class="service__info-description">{{ service.description }}</p>
           </div>
         </div>
       </div>
@@ -49,6 +42,7 @@ import TheHeader from '@/components/TheHeader';
 import TheMenu from '@/components/TheMenu';
 import TheFooter from '@/components/TheFooter';
 import HeaderLogo from "@/components/HeaderLogo";
+import {mapActions} from "vuex";
 
 export default {
   name: 'ServicesItemView',
@@ -57,6 +51,20 @@ export default {
     TheHeader,
     TheMenu,
     TheFooter,
+  },
+  data() {
+    return {
+      service: null,
+    }
+  },
+  created() {
+    const id = this.$route.params.id;
+    if (id) {
+      this.getServiceItem(1).then(response => this.service = response);
+    }
+  },
+  methods: {
+    ...mapActions(['getServiceItem']),
   }
 }
 </script>

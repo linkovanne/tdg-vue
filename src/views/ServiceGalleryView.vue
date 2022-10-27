@@ -3,7 +3,7 @@
     <div class="section__container service-gallery__container">
       <TheHeader>
         <template v-slot:left>
-          <router-link :to="{name: 'service'}" class="ui-link">back</router-link>
+          <a href="#" class="ui-link" @click.prevent="goBack">back</a>
         </template>
         <template v-slot:middle>
           <header-logo/>
@@ -72,9 +72,7 @@ import HeaderLogo from "@/components/HeaderLogo";
 export default {
   name: 'ServiceGalleryView',
   components: {
-    HeaderLogo,
-    ArrowForward,
-    ArrowBack,
+    HeaderLogo, ArrowForward, ArrowBack,
     TheMenu, TheHeader, TheFooter,
     carousel: VueAgile,
   },
@@ -163,6 +161,9 @@ export default {
   methods: {
     toggleWindowSize() {
       this.isMobile = window.innerWidth < 768;
+    },
+    goBack() {
+      window.history.back();
     },
   },
   beforeDestroy() {

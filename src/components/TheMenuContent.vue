@@ -17,9 +17,9 @@
         <div class="the-menu-content__col right">
           <TheMenuButton class="the-menu-content__icon" :is-opened="true" @click="$emit('close-menu')"/>
 
-          <ul class="the-menu-content__list">
-            <li v-for="service in services">
-              <router-link :to="{ name: 'service' }">{{ service }}</router-link>
+          <ul v-if="serviceList && serviceList.length > 0" class="the-menu-content__list">
+            <li v-for="service in serviceList">
+              <router-link :to="{ name: 'service', params: { id: service.id } }">{{ service.label }}</router-link>
             </li>
           </ul>
         </div>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
 import TheFooter from "@/components/TheFooter";
 import TheProject from "@/components/TheProject";
 import TheHeader from "@/components/TheHeader";
@@ -44,21 +45,9 @@ export default {
     TheProject,
     TheFooter,
   },
-  data() {
-    return {
-      services: [
-        'Lavado de Mantenimiento',
-        'Limpieza Integral',
-        'Detailing Interior',
-        'Tratamiento cerámico de Cuero',
-        'Pulido',
-        'Tratamiento Cerámico de Cristales (antilluvia)',
-        'Tratamiento Cerámico de llantas',
-        'Tratamiento Cerámico de plasticos',
-        'Tratamiento de Cera Carnauba'
-      ],
-    }
-  }
+  computed: {
+    ...mapState({serviceList: 'serviceList'})
+  },
 }
 </script>
 

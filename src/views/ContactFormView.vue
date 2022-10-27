@@ -2,7 +2,7 @@
   <section class="section contact-form">
     <TheHeader class="form-header">
       <template v-slot:left>
-        <router-link :to="{name: 'service'}" class="ui-link">back</router-link>
+        <a href="#" class="ui-link" @click.prevent="goBack">back</a>
       </template>
       <template v-slot:middle>
         <header-logo/>
@@ -57,6 +57,9 @@ export default {
     }
   },
   methods: {
+    goBack() {
+      window.history.back();
+    },
     submitForm() {
       console.log('contacts', this.form);
     }

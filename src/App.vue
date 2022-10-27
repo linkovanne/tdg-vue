@@ -3,7 +3,16 @@
 </template>
 
 <script>
-export default {}
+import {mapActions} from 'vuex';
+
+export default {
+  created() {
+    this.getServiceList();
+  },
+  methods: {
+    ...mapActions(['getServiceList'])
+  }
+}
 </script>
 
 <style lang="scss">
