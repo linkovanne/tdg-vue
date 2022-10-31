@@ -7,6 +7,6 @@ import './styles/index.scss';
 
 createApp(App)
     .use(router)
-    .use(VueAgile)
     .use(store)
+    .use(VueAgile)
     .mount('#app')

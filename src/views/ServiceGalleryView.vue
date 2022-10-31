@@ -20,7 +20,7 @@
       <div class="section__content service-gallery__content">
         <carousel ref="carousel" :options="options" class="service-gallery__slider">
           <div v-for="item in items" class="service-gallery__slide">
-            <router-link :to="{name: 'project'}"
+            <router-link :to="{name: 'project', params: { id: 1 }}"
                          class="service-gallery__slide-inner"
                          :style="{backgroundImage: item.img}">
               <h3>{{ item.title }}</h3>

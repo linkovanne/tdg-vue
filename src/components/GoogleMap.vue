@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {mapSettings} from "@/constants/mapSettings";
+import {mapSettings, mapStyles} from "@/constants/mapSettings";
 import {Loader} from "@googlemaps/js-api-loader";
 
 export default {
@@ -32,7 +32,14 @@ export default {
     initMap() {
       this.google
           .load()
-          .then((google) => this.map = new google.maps.Map(this.$refs.googleMap, {...this.mapConfig}))
+          .then((google) => {
+            const styledMapType = new google.maps.StyledMapType(mapStyles, {name: "Styled Map"});
+
+            this.map = new google.maps.Map(this.$refs.googleMap, {...this.mapConfig});
+
+            this.map.mapTypes.set("styled_map", styledMapType);
+            this.map.setMapTypeId("styled_map");
+          })
           .then(() => this.initMarker())
           .catch(e => {
             // do something

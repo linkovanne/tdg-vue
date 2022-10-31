@@ -14,22 +14,30 @@
 
       <div class="section__content service__content">
         <h2 class="service__title">Servicios TDG</h2>
-        <div v-if="service" class="service__info">
-          <div class="service__info-col">
-            <h3 class="service__info-title">{{ service.label }}</h3>
-            <ul class="service__info-list">
-              <li class="service__info-item">Pulido Abrillantado + Cera Carnauba</li>
-              <li class="service__info-item">Detailing + Tratamiento Cerámico Gyeone Infinite</li>
-            </ul>
-            <div class="service__info-action">
-              <router-link :to="{name: 'contactForm'}" class="ui-button">Contáctate con nosotros</router-link>
-              <router-link :to="{name: 'serviceGallery'}" class="ui-button outline">Ver ejemplos</router-link>
+        <div v-if="scene === 'loading'" class="service__info">
+          <h3 class="service__info-title">Preparando datos...</h3>
+        </div>
+        <div v-if="scene === 'rejected'" class="service__info">
+          <h3 class="service__info-title">No se pudieron cargar los datos. Por favor, inténtelo de nuevo más tarde</h3>
+        </div>
+        <template v-if="scene === 'fulfilled'">
+          <div v-if="service" class="service__info">
+            <div class="service__info-col">
+              <h3 class="service__info-title">{{ service.label }}</h3>
+              <ul class="service__info-list">
+                <li class="service__info-item">Pulido Abrillantado + Cera Carnauba</li>
+                <li class="service__info-item">Detailing + Tratamiento Cerámico Gyeone Infinite</li>
+              </ul>
+              <div class="service__info-action">
+                <router-link :to="{name: 'contactForm'}" class="ui-button">Contáctate con nosotros</router-link>
+                <router-link :to="{name: 'serviceGallery'}" class="ui-button outline">Ver ejemplos</router-link>
+              </div>
+            </div>
+            <div class="service__info-col description">
+              <p class="service__info-description">{{ service.description }}</p>
             </div>
           </div>
-          <div class="service__info-col description">
-            <p class="service__info-description">{{ service.description }}</p>
-          </div>
-        </div>
+        </template>
       </div>
 
       <TheFooter/>
@@ -54,17 +62,28 @@ export default {
   },
   data() {
     return {
+      scene: 'loading',
       service: null,
     }
   },
   created() {
     const id = this.$route.params.id;
     if (id) {
-      this.getServiceItem(1).then(response => this.service = response);
+      this.getService(id);
     }
   },
   methods: {
     ...mapActions(['getServiceItem']),
+    getService(id) {
+      this.scene = 'loading';
+
+      this.getServiceItem(id)
+          .then(response => {
+            this.scene = 'fulfilled';
+            this.service = response
+          })
+          .catch(() => this.scene = 'rejected');
+    }
   }
 }
 </script>
@@ -77,6 +96,7 @@ export default {
 }
 
 .service__content {
+  min-height: set-relative-height(486px);
   padding-bottom: 10vh;
 }
 

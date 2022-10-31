@@ -1,10 +1,18 @@
 <template>
   <section class="section project">
-    <VueAgile ref="carousel" :options="options" class="project__slider">
-      <div v-for="img in item.images" class="project__slider-item">
-        <img :src="img" alt="">
+    <VueAgile v-if="portfolio && portfolio.items.length > 0" ref="carousel" :options="options" class="project__slider">
+      <div v-for="item in portfolio.items" class="project__slider-item">
+        <img v-if="item.type === 'img'" :src="item.link" alt="">
+        <iframe
+            v-if="item.type === 'video'"
+            :src="item.link"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+        ></iframe>
       </div>
     </VueAgile>
+
     <div class="section__container project__container">
       <TheHeader>
         <template v-slot:left>
@@ -14,10 +22,15 @@
 
       <TheMenu/>
 
-      <div class="section__content project__content">
-        <h2 class="project__title">{{ item.title }}</h2>
-        <p class="project__subtitle">{{ item.description }}</p>
-      </div>
+      <!--      scene = 'loading'-->
+      <!--      scene = 'rejected'-->
+
+      <template v-if="scene = 'fulfilled'">
+        <div class="section__content project__content">
+          <h2 v-if="portfolio?.header" class="project__title">{{ portfolio.header }}</h2>
+          <p v-if="portfolio?.sub_header" class="project__subtitle">{{ portfolio.sub_header }}</p>
+        </div>
+      </template>
 
       <TheFooter>
         <template v-slot:middle>
@@ -44,6 +57,7 @@ import TheMenu from "@/components/TheMenu";
 import ArrowBack from "@/assets/icons/arrowBack";
 import ArrowForwardLong from "@/assets/icons/arrowForwardLong";
 import {VueAgile} from "vue-agile";
+import {mapActions} from "vuex";
 
 export default {
   name: 'ProjectView',
@@ -59,18 +73,30 @@ export default {
           slidesToShow: 1,
         }
       },
-      item: {
-        id: 1,
-        title: 'coche deportivo',
-        description: 'iPerformance',
-        images: [
-          'https://cdn.pixabay.com/photo/2017/10/16/23/18/lamborghini-2859047_960_720.jpg',
-          'https://cdn.pixabay.com/photo/2017/05/06/05/41/streak-2288981_960_720.jpg',
-          'https://cdn.pixabay.com/photo/2017/02/23/01/28/chevrolet-2091110_960_720.jpg'
-        ],
-      },
+      scene: 'loading',
+      portfolio: null,
+      // link: 'https://www.youtube.com/embed/be5brvsVjCc',
+      // https://www.youtube.com/watch?v=be5brvsVjCc
     }
-  }
+  },
+  created() {
+    this.getPortfolio();
+  },
+  methods: {
+    ...mapActions(['getPortfolioItem']),
+    getPortfolio() {
+      const id = this.$route.params.id;
+
+      if (id) {
+        this.getPortfolioItem(id)
+            .then(response => {
+              this.scene = 'fulfilled';
+              this.portfolio = response;
+            })
+            .catch(() => this.scene = 'rejected');
+      }
+    },
+  },
 }
 </script>
 
