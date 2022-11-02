@@ -2,14 +2,16 @@
   <section class="section project">
     <VueAgile v-if="portfolio && portfolio.items.length > 0" ref="carousel" :options="options" class="project__slider">
       <div v-for="item in portfolio.items" class="project__slider-item">
-        <img v-if="item.type === 'img'" :src="item.link" alt="">
+        <img
+            v-if="item.type === 'img'"
+            :src="item.link"
+            alt="project photo"
+        >
         <iframe
             v-if="item.type === 'video'"
-            :src="item.link"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-        ></iframe>
+            :src="item.link + '?autoplay=1&mute=1&loop=1&controls=0'"
+            title="project video" type="text/html"
+        />
       </div>
     </VueAgile>
 
@@ -22,18 +24,24 @@
 
       <TheMenu/>
 
-      <!--      scene = 'loading'-->
-      <!--      scene = 'rejected'-->
-
-      <template v-if="scene = 'fulfilled'">
-        <div class="section__content project__content">
+      <div class="section__content project__content">
+        <template v-if="scene === 'loading'">
+          <h2 class="project__title">Preparando datos...</h2>
+        </template>
+        <template v-if="scene === 'rejected'">
+          <h2 class="project__title">No se pudieron cargar los datos. Por favor, inténtelo de nuevo más tarde</h2>
+        </template>
+        <template v-if="scene === 'empty'">
+          <h2 class="project__title">Datos no encontrados</h2>
+        </template>
+        <template v-if="scene === 'fulfilled'">
           <h2 v-if="portfolio?.header" class="project__title">{{ portfolio.header }}</h2>
           <p v-if="portfolio?.sub_header" class="project__subtitle">{{ portfolio.sub_header }}</p>
-        </div>
-      </template>
+        </template>
+      </div>
 
       <TheFooter>
-        <template v-slot:middle>
+        <template v-if="portfolio && portfolio.items.length > 0" v-slot:middle>
           <div class="project__slider-nav">
             <a class="project__slider-arrow back" href="#" @click.prevent="$refs.carousel.goToPrev()">
               <span>prev</span>
@@ -73,10 +81,8 @@ export default {
           slidesToShow: 1,
         }
       },
-      scene: 'loading',
+      scene: 'loading', // 'loading' | 'empty' | 'fulfilled' | 'rejected'
       portfolio: null,
-      // link: 'https://www.youtube.com/embed/be5brvsVjCc',
-      // https://www.youtube.com/watch?v=be5brvsVjCc
     }
   },
   created() {
@@ -85,16 +91,16 @@ export default {
   methods: {
     ...mapActions(['getPortfolioItem']),
     getPortfolio() {
+      this.scene = 'loading';
       const id = this.$route.params.id;
 
-      if (id) {
-        this.getPortfolioItem(id)
-            .then(response => {
-              this.scene = 'fulfilled';
-              this.portfolio = response;
-            })
-            .catch(() => this.scene = 'rejected');
-      }
+      !id ? this.scene = 'empty'
+          : this.getPortfolioItem(id)
+              .then(response => {
+                this.scene = 'fulfilled';
+                this.portfolio = response;
+              })
+              .catch(() => this.scene = 'rejected');
     },
   },
 }
@@ -121,6 +127,11 @@ export default {
 
 .project__slider-item {
   height: 100%;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
 
   img {
     width: 100%;

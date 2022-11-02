@@ -68,7 +68,7 @@ export default {
     mapConfig() {
       return {
         ...mapSettings,
-        center: this.marker.position
+        center: this.marker.position,
       };
     },
   }

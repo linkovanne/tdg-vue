@@ -2,6 +2,9 @@
 @import "src/styles/mixins/convert";
 
 .gm-style {
+  img {
+    filter: brightness(.35);
+  }
   // popup content
   .gm-style-iw {
     padding: 0;
@@ -32,6 +35,7 @@
   position: relative;
   display: inline-block;
   padding-bottom: 18px;
+  z-index: 100;
 
   &:after {
     content: '';

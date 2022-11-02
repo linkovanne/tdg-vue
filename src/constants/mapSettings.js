@@ -1,43 +1,3 @@
-import colorPalette from "@/constants/colorPalette";
-
-const {
-    COLOR_LANDSCAPE,
-    COLOR_BORDERS,
-    COLOR_WATER,
-    COLOR_LINE,
-    COLOR_POINT_FILL,
-    COLOR_SELECTED_POINT
-} = colorPalette;
-
-const COLORS = {
-    BORDERS: COLOR_BORDERS,
-    LANDSCAPE: COLOR_LANDSCAPE,
-    LINE: COLOR_LINE,
-    POINT: COLOR_SELECTED_POINT,
-    POINT_FILL: COLOR_POINT_FILL,
-    WATER: COLOR_WATER
-};
-
-const mapSettings = {
-    mapId: 'MAP_ID',
-    clickableIcons: false,
-    streetViewControl: false,
-    panControlOptions: false,
-    gestureHandling: "cooperative",
-    backgroundColor: 'rgb(32, 33, 33)',
-    mapTypeControl: false,
-    zoomControlOptions: {
-        style: "SMALL"
-    },
-    disableDefaultUI: true,
-    zoom: 18,
-    minZoom: 5,
-    maxZoom: 20,
-    mapTypeControlOptions: {
-        mapTypeIds: ["roadmap", "satellite", "hybrid", "terrain", "styled_map"],
-    },
-};
-
 const mapStyles = [
     {elementType: "geometry", stylers: [{color: "#ebe3cd"}]},
     {elementType: "labels.text.fill", stylers: [{color: "#523735"}]},
@@ -148,5 +108,25 @@ const mapStyles = [
         stylers: [{color: "#92998d"}],
     },
 ];
+
+const mapSettings = {
+    mapId: 'MAP_ID',
+    clickableIcons: false,
+    streetViewControl: false,
+    panControlOptions: false,
+    gestureHandling: "cooperative",
+    backgroundColor: 'rgb(32, 33, 33)',
+    mapTypeControl: false,
+    zoomControlOptions: {
+        style: "SMALL"
+    },
+    disableDefaultUI: true,
+    zoom: 18,
+    minZoom: 5,
+    maxZoom: 20,
+    mapTypeControlOptions: {
+        mapTypeIds: ["roadmap", "satellite", "hybrid", "terrain", "styled_map"],
+    },
+};
 
 export {mapSettings, mapStyles};

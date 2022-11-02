@@ -2,7 +2,7 @@
   <section class="section contacts">
     <TheHeader>
       <template v-slot:left>
-        <router-link :to="{name: 'index'}" class="ui-link">back</router-link>
+        <a href="#" class="ui-link" @click.prevent="goBack">back</a>
       </template>
       <template v-slot:middle>
         <header-logo/>
@@ -25,7 +25,12 @@ import GoogleMap from "@/components/GoogleMap";
 
 export default {
   name: 'ContactsView',
-  components: {GoogleMap, HeaderLogo, TheHeader, TheFooter}
+  components: {GoogleMap, HeaderLogo, TheHeader, TheFooter},
+  methods: {
+    goBack() {
+      window.history.back();
+    },
+  },
 }
 </script>
 

@@ -67,22 +67,21 @@ export default {
     }
   },
   created() {
-    const id = this.$route.params.id;
-    if (id) {
-      this.getService(id);
-    }
+    this.getService();
   },
   methods: {
     ...mapActions(['getServiceItem']),
-    getService(id) {
+    getService() {
       this.scene = 'loading';
+      const id = this.$route.params.id;
 
-      this.getServiceItem(id)
-          .then(response => {
-            this.scene = 'fulfilled';
-            this.service = response
-          })
-          .catch(() => this.scene = 'rejected');
+      !id ? this.scene = 'empty'
+          : this.getServiceItem(id)
+              .then(response => {
+                this.scene = 'fulfilled';
+                this.service = response
+              })
+              .catch(() => this.scene = 'rejected');
     }
   }
 }
@@ -145,30 +144,30 @@ export default {
 }
 
 .service__info-title {
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.1em;
   @media (min-width: 1024px) {
     font-size: px2rem(64px);
     line-height: calc(78 / 64);
   }
   @media (max-width: 1023.98px) {
-    font-size: 4vh;
+    font-size: set-relative-height(33px);
     line-height: calc(40 / 33);
   }
 }
 
 .service__info-list {
   padding-left: 22px;
-  font-weight: 700;
-  font-size: px2rem(22px);
+  font-weight: 500;
   line-height: calc(39 / 22);
   letter-spacing: 0.2em;
   @media (min-width: 1024px) {
     margin-bottom: 1rem;
+    font-size: px2rem(22px);
   }
   @media (max-width: 1023.98px) {
     margin-bottom: 7vh;
-    font-size: 2vh;
+    font-size: set-relative-height(22px);
   }
 }
 
@@ -187,9 +186,14 @@ export default {
 }
 
 .service__info-description {
-  font-size: px2rem(24px);
   line-height: 1.34;
   letter-spacing: 0.05em;
   color: $light-text;
+  @media (min-width: 1024px) {
+    font-size: px2rem(24px);
+  }
+  @media (max-width: 1023.98px) {
+    font-size: set-relative-height(24px);
+  }
 }
 </style>
