@@ -18,7 +18,7 @@
           <h3 class="service__info-title">Preparando datos...</h3>
         </div>
         <div v-if="scene === 'rejected'" class="service__info">
-          <h3 class="service__info-title">No se pudieron cargar los datos. Por favor, inténtelo de nuevo más tarde</h3>
+          <h3 class="service__info-title">No se pudieron cargar los datos. <br>Por favor, inténtelo de nuevo más tarde</h3>
         </div>
         <template v-if="scene === 'fulfilled'">
           <div v-if="service" class="service__info">

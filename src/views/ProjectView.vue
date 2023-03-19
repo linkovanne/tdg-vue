@@ -5,12 +5,12 @@
         <img
             v-if="item.type === 'img'"
             :src="item.link"
-            alt="project photo"
+            :alt="item.label"
         >
         <iframe
             v-if="item.type === 'video'"
             :src="item.link + '?autoplay=1&mute=1&loop=1&controls=0'"
-            title="project video" type="text/html"
+            :title="item.label" type="text/html"
         />
       </div>
     </VueAgile>
@@ -29,7 +29,7 @@
           <h2 class="project__title">Preparando datos...</h2>
         </template>
         <template v-if="scene === 'rejected'">
-          <h2 class="project__title">No se pudieron cargar los datos. Por favor, inténtelo de nuevo más tarde</h2>
+          <h2 class="project__title">No se pudieron cargar los datos. <br>Por favor, inténtelo de nuevo más tarde</h2>
         </template>
         <template v-if="scene === 'empty'">
           <h2 class="project__title">Datos no encontrados</h2>
